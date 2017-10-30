@@ -28,6 +28,7 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     implementation 'org.xutils:xutils:3.5.0'
     implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'commons-codec:commons-codec:20041127.091804'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'

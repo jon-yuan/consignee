@@ -2,7 +2,7 @@ package com.babuwyt.consignee.base;
 
 import android.text.TextUtils;
 
-import com.babuwyt.carrier.bean.User;
+import com.babuwyt.consignee.bean.User;
 
 
 /**

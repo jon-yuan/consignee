@@ -2,16 +2,12 @@ package com.babuwyt.consignee.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,11 +18,11 @@ import android.widget.TextView;
 
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.base.BaseActivity;
+import com.babuwyt.consignee.util.UHelper;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -34,47 +30,56 @@ import java.util.ArrayList;
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-//    @ViewInject(R.id.toolbar)
-//    Toolbar toolbar;
-//    @ViewInject(R.id.springview)
-//    SpringView springview;
-    @ViewInject(R.id.fab)
-    FloatingActionButton fab;
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
+    @ViewInject(R.id.springview)
+    SpringView springview;
     @ViewInject(R.id.drawer_layout)
     DrawerLayout drawer;
-//    @ViewInject(R.id.listview)
-//    ListView listview;
+    @ViewInject(R.id.nav_view)
+    NavigationView nav_view;
+    @ViewInject(R.id.listview)
+    ListView listview;
     private ArrayList<String> mList;
     private TestAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
+        setStatusBar(false);
         init();
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
+//        getStatusBarHeight();
     }
+
+
     @SuppressLint("ResourceAsColor")
-    private void init(){
-//        springview.setHeader(new DefaultHeader(this));
-//        springview.setListener(new SpringView.OnFreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                mList.add("1");
-//                mList.add("1");
-//                mList.add("1");
-//                adapter.notifyDataSetChanged();
-//                springview.onFinishFreshAndLoad();
-//            }
-//
-//            @Override
-//            public void onLoadmore() {
-//                springview.onFinishFreshAndLoad();
-//            }
-//        });
+    private void init() {
+        nav_view.setNavigationItemSelectedListener(this);
+        toolbar.setNavigationIcon(R.drawable.icon_user);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+        springview.setHeader(new DefaultHeader(this));
+        springview.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                mList.add("1");
+                mList.add("1");
+                mList.add("1");
+                adapter.notifyDataSetChanged();
+                springview.onFinishFreshAndLoad();
+            }
+
+            @Override
+            public void onLoadmore() {
+                springview.onFinishFreshAndLoad();
+            }
+        });
 
 //        TextView emptyView = new TextView(this);
 //        emptyView.setTextColor(R.color.black);
@@ -83,25 +88,18 @@ public class MainActivity extends BaseActivity
 //        emptyView.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
 //        emptyView.setVisibility(View.VISIBLE);
 //        ((ViewGroup)listview.getParent()).addView(emptyView);
-        mList=new ArrayList<String>();
-        adapter=new TestAdapter(this);
-//        listview.setAdapter(adapter);
-    }
-    @Event(value = {R.id.fab})
-    private void getE(View v){
-        switch (v.getId()){
-            case R.id.fab:
-                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                break;
-        }
+        mList = new ArrayList<String>();
+        adapter = new TestAdapter(this);
+        listview.setAdapter(adapter);
     }
 
-    class TestAdapter extends BaseAdapter{
+    class TestAdapter extends BaseAdapter {
         Context context;
-        public TestAdapter(Context context){
-            this.context=context;
+
+        public TestAdapter(Context context) {
+            this.context = context;
         }
+
         @Override
         public int getCount() {
             return mList.size();
@@ -119,8 +117,8 @@ public class MainActivity extends BaseActivity
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            TextView textView=new TextView(MainActivity.this);
-            textView.setText(i+"测试一下");
+            TextView textView = new TextView(MainActivity.this);
+            textView.setText(i + "测试一下");
             return textView;
         }
     }
@@ -162,22 +160,14 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_order) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_setting) {
+            startActivity(new Intent(this,SettingActivity.class));
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

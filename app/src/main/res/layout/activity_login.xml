@@ -2,11 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_login_shape"
     android:fitsSystemWindows="true"
-    android:background="@drawable/background_login_shape">
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="25dp">
 
 
     <android.support.v7.widget.Toolbar
@@ -15,12 +17,22 @@
         android:layout_height="@dimen/defautl_navigationbar_size"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="@string/Login"
-        app:navigationIcon="@drawable/icon_x"
+        app:contentInsetStart="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/icon_x"
+        app:title="">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Login"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -39,30 +51,34 @@
         android:layout_marginEnd="45dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="60dp"
+        android:background="@drawable/default_background_white_line_radius_5"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@drawable/default_background_white_line_radius_5"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@drawable/default_background_white_line_left_radius_5"
             android:paddingHorizontal="5dp"
-            android:src="@drawable/icon_user"
             android:scaleType="centerInside"
-            android:background="@drawable/default_background_white_line_left_radius_5"/>
+            android:src="@drawable/icon_user" />
+
         <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="UserName"
-            android:textColorHint="@color/white_55"
+            android:gravity="center_vertical"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:lines="1"
             android:paddingLeft="10dp"
             android:textColor="@color/white"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:gravity="center_vertical"/>
+            android:textColorHint="@color/white_55"
+            android:textCursorDrawable="@drawable/color_cursor" />
 
     </LinearLayout>
 
@@ -72,31 +88,34 @@
         android:layout_height="45dp"
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
         android:background="@drawable/default_background_white_line_radius_5"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@drawable/default_background_white_line_left_radius_5"
             android:paddingHorizontal="5dp"
-            android:src="@drawable/icon_psd"
             android:scaleType="centerInside"
-            android:background="@drawable/default_background_white_line_left_radius_5"/>
+            android:src="@drawable/icon_psd" />
+
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="Password"
-            android:textColorHint="@color/white_55"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:lines="1"
             android:paddingLeft="10dp"
             android:textColor="@color/white"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:gravity="center_vertical"/>
+            android:textColorHint="@color/white_55"
+            android:textCursorDrawable="@drawable/color_cursor" />
 
     </LinearLayout>
 
@@ -105,12 +124,12 @@
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/default_background_white_line_radius_5"
+        android:gravity="center"
         android:text="@string/Login"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:gravity="center"
-        android:background="@drawable/default_background_white_line_radius_5"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 </android.support.constraint.ConstraintLayout>

@@ -3,9 +3,9 @@ package com.babuwyt.consignee.base;
 import android.app.Application;
 import android.text.TextUtils;
 
-import com.babuwyt.carrier.bean.User;
-import com.babuwyt.carrier.finals.SharePrefKeys;
-import com.babuwyt.carrier.util.SharePreferencesUtils;
+import com.babuwyt.consignee.bean.User;
+import com.babuwyt.consignee.finals.SharePrefKeys;
+import com.babuwyt.consignee.util.SharePreferencesUtils;
 import com.google.gson.Gson;
 
 import org.xutils.x;

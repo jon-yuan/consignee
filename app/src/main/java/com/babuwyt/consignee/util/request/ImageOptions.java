@@ -2,7 +2,8 @@ package com.babuwyt.consignee.util.request;
 
 import android.widget.ImageView;
 
-import com.babuwyt.carrier.R;
+import com.babuwyt.consignee.R;
+
 
 /**
  * Created by lenovo on 2017/10/18.

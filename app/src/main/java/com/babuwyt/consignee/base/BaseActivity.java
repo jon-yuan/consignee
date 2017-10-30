@@ -7,12 +7,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.babuwyt.carrier.R;
-import com.babuwyt.carrier.util.SystemUtils;
+
+import com.babuwyt.consignee.R;
+import com.babuwyt.consignee.util.SystemUtils;
 
 import org.xutils.x;
 
@@ -30,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStatusBar(true);
         x.view().inject(this);
     }
     protected void setStatusBar(boolean b) {
@@ -122,5 +123,25 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
         return result;
+    }
+
+    private int getStatusBarHeight(){
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, sbar = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            sbar = getResources().getDimensionPixelSize(x);
+            Log.d("status高度",sbar+"");
+            return sbar;
+        } catch (Exception e1) {
+            Log.e("error","get status bar height fail");
+            e1.printStackTrace();
+            return 0;
+        }
     }
 }
