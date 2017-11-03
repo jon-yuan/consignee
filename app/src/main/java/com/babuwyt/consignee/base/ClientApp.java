@@ -2,6 +2,7 @@ package com.babuwyt.consignee.base;
 
 import android.app.Application;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.babuwyt.consignee.bean.User;
 import com.babuwyt.consignee.finals.SharePrefKeys;
@@ -9,6 +10,8 @@ import com.babuwyt.consignee.util.SharePreferencesUtils;
 import com.google.gson.Gson;
 
 import org.xutils.x;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -22,7 +25,15 @@ public class ClientApp extends Application {
         //初始化
         x.Ext.init(this);
         initUserInfo();
+        initJpush();
 //        Location();
+        String registrationId = JPushInterface.getRegistrationID(this);
+        Log.d("=registrationId=",registrationId+"");
+    }
+
+    private void initJpush(){
+        JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
     /**
      * 初始化用户信息
