@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/defautl_navigationbar_size"
+        app:contentInsetStart="0dp"
+        app:title=""
+        app:navigationIcon="@drawable/icon_back_black">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_psd"
+        android:textColor="@color/black_333"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin">
+        <LinearLayout
+            style="@style/LinearLayout_style"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginVertical="5dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="5dp"
+                android:textColor="@color/black_333"
+                android:textSize="14sp"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:hint="@string/please_input_phone"
+                android:background="@null"/>
+        </LinearLayout>
+        <include layout="@layout/line"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+        <LinearLayout
+            style="@style/LinearLayout_style"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginVertical="5dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="5dp"
+                android:textColor="@color/black_333"
+                android:textSize="14sp"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:hint="@string/please_input_psd_again"
+                android:background="@null"/>
+        </LinearLayout>
+        <include layout="@layout/line"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+        <LinearLayout
+            style="@style/LinearLayout_style"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="35dp"
+                android:layout_marginVertical="5dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="5dp"
+                android:textColor="@color/black_333"
+                android:textSize="14sp"
+                android:text=""
+                android:inputType="textEmailAddress"
+                android:hint="@string/please_input_authcode"
+                android:background="@null"/>
+            <TextView
+                style="@style/btn_style"
+                android:layout_margin="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/get_authcode"
+                android:enabled="false"
+                android:background="@drawable/authcode_shape"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:textColor="@color/authcode_color" />
+
+        </LinearLayout>
+        <include layout="@layout/line"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            style="@style/LinearLayout_btn_style"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="24dp"
+            android:text="@string/confirm"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

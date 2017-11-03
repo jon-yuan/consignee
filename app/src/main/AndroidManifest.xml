@@ -63,6 +63,14 @@
             android:name=".ui.activity.SettingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.ForgetPsdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.ChangePsdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
 
 
         <!--激光推送-->

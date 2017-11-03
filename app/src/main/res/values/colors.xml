@@ -8,7 +8,10 @@
     <color name="black_333">#333</color>
     <color name="white">#fff</color>
     <color name="white_55">#55FFFFFF</color>
+    <color name="btn_blue">#FF5084FA</color>
+    <color name="btn_blue_55">#555084FA</color>
     <color name="default_blue">#FF004D9F</color>
+    <color name="default_blue_55">#55004D9F</color>
     <color name="default_yellow">#ED8101</color>
     <color name="default_yellow_55">#55ED8101</color>
 </resources>

@@ -21,8 +21,8 @@ import org.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends BaseActivity {
-    @ViewInject(R.id.toolbar)
-    Toolbar toolbar;
+//    @ViewInject(R.id.toolbar)
+//    Toolbar toolbar;
     @ViewInject(R.id.tv_login)
     TextView tv_login;
 
@@ -30,27 +30,31 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStatusBar(false);
+        setStatusBar(true);
         init();
     }
 
     private void init() {
         intent=new Intent();
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        toolbar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
     }
 
 
-    @Event(value = {R.id.tv_login})
+    @Event(value = {R.id.tv_login,R.id.tv_forgetpsd})
     private void getE(View v){
         switch (v.getId()){
             case R.id.tv_login:
                 intent.setClass(this,MainActivity.class);
+                startActivity(intent);
+                break;
+                case R.id.tv_forgetpsd:
+                intent.setClass(this,ForgetPsdActivity.class);
                 startActivity(intent);
                 break;
         }

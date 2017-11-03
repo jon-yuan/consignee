@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.babuwyt.consignee.R;
+import com.babuwyt.consignee.adapter.MainAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
 import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.jpush.LocalBroadcastManager;
@@ -27,13 +28,14 @@ import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
     @ViewInject(R.id.toolbar)
     Toolbar toolbar;
     @ViewInject(R.id.springview)
@@ -45,14 +47,13 @@ public class MainActivity extends BaseActivity
     @ViewInject(R.id.listview)
     ListView listview;
     private ArrayList<String> mList;
-    private TestAdapter adapter;
+    private MainAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBar(false);
         init();
-//        getStatusBarHeight();
         registerMessageReceiver();
     }
 
@@ -60,13 +61,25 @@ public class MainActivity extends BaseActivity
     @SuppressLint("ResourceAsColor")
     private void init() {
         nav_view.setNavigationItemSelectedListener(this);
-        toolbar.setNavigationIcon(R.drawable.icon_user);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.openDrawer(GravityCompat.START);
                 }
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_shaixuan:
+                        UHelper.showToast(MainActivity.this,"筛选");
+                        break;
+                }
+                return true;
             }
         });
         springview.setHeader(new DefaultHeader(this));
@@ -76,7 +89,7 @@ public class MainActivity extends BaseActivity
                 mList.add("1");
                 mList.add("1");
                 mList.add("1");
-                adapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
                 springview.onFinishFreshAndLoad();
             }
 
@@ -94,40 +107,19 @@ public class MainActivity extends BaseActivity
 //        emptyView.setVisibility(View.VISIBLE);
 //        ((ViewGroup)listview.getParent()).addView(emptyView);
         mList = new ArrayList<String>();
-        adapter = new TestAdapter(this);
-        listview.setAdapter(adapter);
+        mAdapter = new MainAdapter(this);
+        mAdapter.setmList(mList);
+        listview.setAdapter(mAdapter);
     }
 
-    class TestAdapter extends BaseAdapter {
-        Context context;
+    @Event(value = {R.id.tv_qianshou})
+    private void getE(View v){
+        switch (v.getId()){
+            case R.id.tv_qianshou:
 
-        public TestAdapter(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public int getCount() {
-            return mList.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return i;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(MainActivity.this);
-            textView.setText(i + "测试一下");
-            return textView;
+                break;
         }
     }
-
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -143,22 +135,6 @@ public class MainActivity extends BaseActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
