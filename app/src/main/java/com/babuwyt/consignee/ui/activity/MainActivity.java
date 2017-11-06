@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.babuwyt.consignee.base.BaseActivity;
 import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.jpush.LocalBroadcastManager;
 import com.babuwyt.consignee.util.jpush.Util;
+import com.babuwyt.consignee.views.dialog.ShaixuanDialog;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -76,7 +79,8 @@ public class MainActivity extends BaseActivity
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_shaixuan:
-                        UHelper.showToast(MainActivity.this,"筛选");
+//                        UHelper.showToast(MainActivity.this,"筛选");
+                        showShaixuan();
                         break;
                 }
                 return true;
@@ -110,13 +114,19 @@ public class MainActivity extends BaseActivity
         mAdapter = new MainAdapter(this);
         mAdapter.setmList(mList);
         listview.setAdapter(mAdapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(MainActivity.this,LookSignNoActivity.class));
+            }
+        });
     }
 
     @Event(value = {R.id.tv_qianshou})
     private void getE(View v){
         switch (v.getId()){
             case R.id.tv_qianshou:
-
+                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
                 break;
         }
     }
@@ -152,6 +162,24 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+
+    /**
+     * 筛选
+     */
+
+    @SuppressLint("NewApi")
+    private void showShaixuan(){
+        final ShaixuanDialog dialog=new ShaixuanDialog(this);
+        dialog.create();
+        dialog.show();
+        dialog.setCallBack(new ShaixuanDialog.CallBack() {
+            @Override
+            public void CallBack(String s) {
+                dialog.dismiss();
+                UHelper.showToast(MainActivity.this,s);
+            }
+        });
+    }
 
 
 

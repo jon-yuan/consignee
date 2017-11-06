@@ -38,4 +38,6 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 }

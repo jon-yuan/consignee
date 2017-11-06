@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/main_adapter_item_top_shape"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingHorizontal="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black_333"
+                android:gravity="center"
+                android:text="合同编号"/>
+
+            <ImageView
+                android:id="@+id/img_canal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_x_black"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerInside"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <GridView
+            android:id="@+id/gridview"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:verticalSpacing="20dp"
+            android:horizontalSpacing="20dp"/>
+        <TextView
+            android:id="@+id/tv_confirm"
+            style="@style/btn_style"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="@string/confirm"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

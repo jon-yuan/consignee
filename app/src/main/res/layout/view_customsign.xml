@@ -2,14 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@drawable/default_background_edittext_gray_line_5">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,17 +27,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:textStyle="bold"
             android:text="D1515151"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,17 +53,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:textStyle="normal"
             android:text="隆基集团"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,17 +78,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货"
+            android:text="收货方收货方收货方收货方收货方收货收货方收货货方收货方收货"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,17 +103,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货收货方收货方收货方收货方收货方收货"
+            android:text="地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,14 +126,15 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="于少华"
+            android:layout_weight="1"
             android:singleLine="true"
+            android:text="于少华"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,21 +144,24 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
+            android:layout_weight="1"
             android:singleLine="true"
             android:text="于少华"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,78 +173,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="bold"
             android:text="H4adwaddaw"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-    <android.support.constraint.ConstraintLayout
+
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="1px"
+        android:layout_marginVertical="@dimen/activity_horizontal_margin"
+        android:background="@color/line" />
 
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/textView6" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            tools:layout_editor_absoluteY="68dp" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView10"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toTopOf="@+id/textView10" />
-    </android.support.constraint.ConstraintLayout>
     <LinearLayout
-        android:layout_marginTop="30dp"
+
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -240,53 +210,76 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/product_guige"
-            android:textColor="@color/black_333"
-            android:textSize="14sp" />
+        android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="84009-4551"
-            android:singleLine="true"
-            android:textColor="@color/black_333"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/product_num"
-            android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:orientation="horizontal">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_guige"
+                android:textColor="@color/black_333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="84009-4551"
+                android:textColor="@color/black_333"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:singleLine="true"
-            android:text="18托"
-            android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_num"
+                android:textColor="@color/black_333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="18"
+                android:textColor="@color/black_333"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -296,14 +289,15 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="120根"
+            android:layout_weight="1"
             android:singleLine="true"
+            android:text="120根"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -313,24 +307,29 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
+            android:layout_weight="1"
             android:singleLine="true"
             android:text="18托"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginVertical="@dimen/activity_horizontal_margin"
+        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -350,9 +349,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical|top"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -362,14 +363,15 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
-            android:text="于少华"
+            android:layout_weight="1"
             android:singleLine="true"
+            android:text="于少华"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -379,21 +381,24 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textStyle="normal"
+            android:layout_weight="1"
             android:singleLine="true"
             android:text="陕E12569"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -406,10 +411,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:textStyle="normal"
             android:text="隆基集团"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 

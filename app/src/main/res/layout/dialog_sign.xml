@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginHorizontal="40dp"
+        android:paddingHorizontal="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/default_background_edittext_gray_line_5">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_success_blue"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="签收成功！"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/black_333"
+            android:layout_marginVertical="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
