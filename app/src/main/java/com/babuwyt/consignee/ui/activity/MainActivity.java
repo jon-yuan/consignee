@@ -158,9 +158,10 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_order) {
-
+            startActivity(new Intent(this,HistoryOrderActivity.class));
         } else if (id == R.id.nav_setting) {
             startActivity(new Intent(this,SettingActivity.class));
+
         }
 
 //        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

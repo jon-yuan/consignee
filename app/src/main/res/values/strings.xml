@@ -69,5 +69,19 @@
     <string name="PROMPT_AUTHCODE_IS_NOT_EMPTY">验证码不能为空</string>
     <string name="new_version">当前版本</string>
     <string name="PROMPT_PHONE_FORMAT_IS_NOT_TRUE">手机号不正确</string>
+    <string name="historyorder">历史订单</string>
+    <string name="select_time">选择时间</string>
+    <string name="zhi">至</string>
+    <string name="start_time">起始日期</string>
+    <string name="end_time">结束日期</string>
+    <string name="action_search">搜索</string>
+    <string name="please_input_search_text">输入搜索内容</string>
+    <string-array name="search_type">
+
+        <item>全部</item>
+        <item>合同号</item>
+        <item>签收单号</item>
+
+    </string-array>
 
 </resources>
