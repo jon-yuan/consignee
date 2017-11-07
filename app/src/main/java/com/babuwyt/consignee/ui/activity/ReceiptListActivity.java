@@ -1,9 +1,11 @@
 package com.babuwyt.consignee.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.babuwyt.consignee.R;
@@ -49,5 +51,11 @@ public class ReceiptListActivity extends BaseActivity {
         mAdapter=new ReceiptAdapter(this);
         mAdapter.setmList(mList);
         listview.setAdapter(mAdapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(ReceiptListActivity.this,SignDetailsActivity.class));
+            }
+        });
     }
 }

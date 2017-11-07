@@ -78,6 +78,8 @@ public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate{
 //        finish();
         UHelper.showToast(this,result);
 //        mQRCodeView.startSpot();
+        finish();
+        startActivity(new Intent(this,ReceiptListActivity.class));
     }
 
     @Override

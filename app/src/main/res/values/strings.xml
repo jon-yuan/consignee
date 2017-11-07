@@ -62,5 +62,12 @@
     <string name="shouhuoriqi">收货日期</string>
     <string name="qianshoudan">签收单</string>
     <string name="saomiao">扫描</string>
+    <string name="cancal">取消</string>
+    <string name="prompt">提示</string>
+    <string name="PROMPT_PSD_FORMAT_IS_NOT_TRUE">密码格式不正确</string>
+    <string name="MAKETRUE_PSD_IS_SUCCESS">请确认密码是否相同</string>
+    <string name="PROMPT_AUTHCODE_IS_NOT_EMPTY">验证码不能为空</string>
+    <string name="new_version">当前版本</string>
+    <string name="PROMPT_PHONE_FORMAT_IS_NOT_TRUE">手机号不正确</string>
 
 </resources>

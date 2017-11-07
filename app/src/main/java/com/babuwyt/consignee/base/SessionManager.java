@@ -10,6 +10,7 @@ import com.babuwyt.consignee.bean.User;
  */
 
 public class SessionManager {
+    private String servicephone;
     private static SessionManager manager;
     /**
      * 文件保存的路径，文件夹
@@ -84,4 +85,11 @@ public class SessionManager {
         return appFileDirPath;
     }
 
+    public String getServicephone() {
+        return servicephone;
+    }
+
+    public void setServicephone(String servicephone) {
+        this.servicephone = servicephone;
+    }
 }

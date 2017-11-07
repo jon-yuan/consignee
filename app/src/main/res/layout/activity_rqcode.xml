@@ -22,6 +22,7 @@
             android:textSize="20sp"/>
     </android.support.v7.widget.Toolbar>
     <cn.bingoogolapple.qrcode.zxing.ZXingView
+
         android:id="@+id/zxingview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +30,7 @@
         app:qrcv_barCodeTipText="将条码放入框内，即可自动扫描"
         app:qrcv_barcodeRectHeight="120dp"
         app:qrcv_borderColor="@android:color/white"
-        app:qrcv_borderSize="1dp"
+        app:qrcv_borderSize="2dp"
         app:qrcv_cornerColor="@color/btn_blue"
         app:qrcv_cornerLength="20dp"
         app:qrcv_cornerSize="3dp"
@@ -47,11 +48,11 @@
         app:qrcv_qrCodeTipText="将二维码放入框内，即可自动扫描"
         app:qrcv_rectWidth="200dp"
         app:qrcv_scanLineColor="@color/red"
-        app:qrcv_scanLineMargin="0dp"
-        app:qrcv_scanLineSize="0.5dp"
+        app:qrcv_scanLineMargin="10dp"
+        app:qrcv_scanLineSize="10dp"
         app:qrcv_tipTextColor="@android:color/white"
         app:qrcv_tipTextSize="12sp"
-        app:qrcv_toolbarHeight="56dp"
+        app:qrcv_toolbarHeight="100dp"
         app:qrcv_topOffset="50dp"/>
 
 </LinearLayout>
