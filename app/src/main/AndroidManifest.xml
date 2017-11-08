@@ -100,6 +100,16 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".ui.activity.PositionActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".ui.activity.LocusActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
 
 
         <!--激光推送-->
@@ -226,6 +236,12 @@
             android:name="JPUSH_APPKEY"
             android:value="4b2a6e6294dccf4a0072c5fa" />
 
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="823d41ea0ddbb1a6fca1e4cf80a7bba6">
+        </meta-data>
+        <service android:name="com.amap.api.location.APSService"/>
     </application>
 
 </manifest>

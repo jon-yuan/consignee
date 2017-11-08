@@ -41,4 +41,6 @@ dependencies {
     compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
     compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
     compile 'com.google.zxing:core:3.3.0'
+    compile 'com.amap.api:map2d:latest.integration'
+    compile 'com.amap.api:location:latest.integration'
 }
