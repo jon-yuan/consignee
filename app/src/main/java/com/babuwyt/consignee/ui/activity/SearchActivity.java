@@ -51,7 +51,10 @@ public class SearchActivity extends BaseActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(SearchActivity.this,LookSignNoActivity.class));
+                Intent intent=new Intent();
+                intent.setClass(SearchActivity.this,LookSignNoActivity.class);
+                intent.putExtra("orderId","5777");
+                startActivity(intent);
             }
         });
     }

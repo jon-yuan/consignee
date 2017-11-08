@@ -27,11 +27,11 @@
                 android:src="@drawable/icon_order" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tv_dervernum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="M15268526525"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:layout_marginLeft="28dp"
                 android:text="签收单号"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,18 +62,22 @@
                     android:gravity="center_vertical|right"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/tv_no1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="QS125151245"
+                        android:text=""
+                        android:singleLine="true"
                         android:textColor="@color/black_333"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
                     <TextView
+                        android:id="@+id/tv_no2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:text="QS125151245"
+                        android:text=""
+                        android:singleLine="true"
                         android:textColor="@color/black_333"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -82,18 +86,24 @@
                     android:gravity="center_vertical|right"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/tv_no3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="QS125151245"
+                        android:text=""
+                        android:singleLine="true"
+                        android:visibility="gone"
                         android:textColor="@color/black_333"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
                     <TextView
+                        android:id="@+id/tv_no4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:text="QS125151245"
+                        android:text=""
+                        android:singleLine="true"
+                        android:visibility="gone"
                         android:textColor="@color/black_333"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -104,6 +114,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
 
@@ -113,7 +124,7 @@
                 android:layout_marginLeft="28dp"
                 android:text="@string/luxian"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,7 +138,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="西安"
                     android:textColor="@color/black_333"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -141,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="银川"
                     android:textColor="@color/black_333"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -158,16 +169,17 @@
                 android:layout_marginLeft="28dp"
                 android:text="@string/carneed"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tv_cartype"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:gravity="right"
-                android:text="13米/吨"
+                android:text=""
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -178,21 +190,23 @@
             android:gravity="center_vertical">
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
                 android:text="@string/product"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tv_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:gravity="right"
-                android:text="果蔬农产品"
+                android:text=""
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -200,6 +214,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:text="@string/huozhu"
+                android:textColor="@color/black_333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_huozhu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:gravity="right"
+                android:text=""
+                android:textColor="@color/black_333"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone"
             android:gravity="center_vertical">
 
             <TextView
@@ -208,7 +250,7 @@
                 android:layout_marginLeft="28dp"
                 android:text="@string/tihuo_time"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -217,7 +259,7 @@
                 android:gravity="right"
                 android:text="2017/05/07"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>

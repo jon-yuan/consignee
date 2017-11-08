@@ -2,7 +2,7 @@ package com.babuwyt.consignee.base;
 
 import android.text.TextUtils;
 
-import com.babuwyt.consignee.bean.User;
+import com.babuwyt.consignee.bean.login.User;
 
 
 /**
@@ -62,7 +62,7 @@ public class SessionManager {
         if (mUser == null) {
             b = false;
         } else {
-            if (TextUtils.isEmpty(mUser.getId())) {
+            if (TextUtils.isEmpty(mUser.getFid())) {
                 b = false;
             } else {
                 b = true;

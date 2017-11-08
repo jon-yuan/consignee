@@ -15,6 +15,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,8 @@ import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.MainAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
 import com.babuwyt.consignee.base.SessionManager;
+import com.babuwyt.consignee.bean.order.OrderBean;
+import com.babuwyt.consignee.bean.order.OrderEntity;
 import com.babuwyt.consignee.bean.version.VersionBean;
 import com.babuwyt.consignee.bean.version.VersionEntity;
 import com.babuwyt.consignee.finals.BaseURL;
@@ -38,6 +41,7 @@ import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseProgressCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.babuwyt.consignee.views.dialog.ShaixuanDialog;
+import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -47,6 +51,8 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
@@ -61,9 +67,9 @@ public class MainActivity extends BaseActivity
     NavigationView nav_view;
     @ViewInject(R.id.listview)
     ListView listview;
-    private ArrayList<String> mList;
+    private ArrayList<OrderEntity> mList;
     private MainAdapter mAdapter;
-
+    private int pageNum=1;//分页
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,7 @@ public class MainActivity extends BaseActivity
         init();
         registerMessageReceiver();
         getVersion();
+        getOrder();
     }
 
 
@@ -100,30 +107,30 @@ public class MainActivity extends BaseActivity
             }
         });
         springview.setHeader(new DefaultHeader(this));
+        springview.setFooter(new DefaultFooter(this));
         springview.setListener(new SpringView.OnFreshListener() {
             @Override
             public void onRefresh() {
-                mList.add("1");
-                mAdapter.notifyDataSetChanged();
-                springview.onFinishFreshAndLoad();
+                getOrder();
             }
 
             @Override
             public void onLoadmore() {
+                getOrderMore();
                 springview.onFinishFreshAndLoad();
             }
         });
-        mList = new ArrayList<String>();
-        mList.add("1");
-        mList.add("1");
-        mList.add("1");
+        mList = new ArrayList<OrderEntity>();
         mAdapter = new MainAdapter(this);
         mAdapter.setmList(mList);
         listview.setAdapter(mAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MainActivity.this,LookSignNoActivity.class));
+                Intent intent=new Intent();
+                intent.setClass(MainActivity.this,LookSignNoActivity.class);
+                intent.putExtra("orderId",mList.get(i).getOrderId());
+                startActivity(intent);
             }
         });
     }
@@ -188,20 +195,9 @@ public class MainActivity extends BaseActivity
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 极光推送
+     */
     private MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
     public static final String KEY_TITLE = "title";
@@ -242,7 +238,67 @@ public class MainActivity extends BaseActivity
         super.onDestroy();
     }
 
+    /**
+     * 获取订单
+     */
 
+    private void getOrder(){
+        pageNum=1;
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("fid",SessionManager.getInstance().getUser().getFid());
+        map.put("pageNum",pageNum);
+        mDialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.GETORDERSHOW,map,new ResponseCallBack<OrderBean>(){
+            @Override
+            public void onSuccess(OrderBean result) {
+                super.onSuccess(result);
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+                if (result.isSuccess()){
+                    mList.clear();
+                    mList.addAll(result.getObj()==null? new ArrayList<OrderEntity>(): result.getObj());
+                    mAdapter.notifyDataSetChanged();
+                }else {
+                    UHelper.showToast(MainActivity.this,result.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+            }
+        });
+    }
+    private void getOrderMore(){
+        pageNum++;
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("fid",SessionManager.getInstance().getUser().getFid());
+        map.put("pageNum",pageNum);
+        mDialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.GETORDERSHOW,map,new ResponseCallBack<OrderBean>(){
+            @Override
+            public void onSuccess(OrderBean result) {
+                super.onSuccess(result);
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+                if (result.isSuccess()){
+                    mList.addAll(result.getObj()==null? new ArrayList<OrderEntity>(): result.getObj());
+                    mAdapter.notifyDataSetChanged();
+                }else {
+                    UHelper.showToast(MainActivity.this,result.getMsg());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+            }
+        });
+    }
     /**
      * 版本检测
      */

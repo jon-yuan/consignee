@@ -76,6 +76,11 @@
     <string name="end_time">结束日期</string>
     <string name="action_search">搜索</string>
     <string name="please_input_search_text">输入搜索内容</string>
+    <string name="PLEASE_INPUT_USERACT">请输入账号</string>
+    <string name="login_error">登录信息有误</string>
+    <string name="HAS_SEND_TO">已发送</string>
+    <string name="CHANGE_SUCCESS">修改成功</string>
+    <string name="huozhu">货主</string>
     <string-array name="search_type">
 
         <item>全部</item>

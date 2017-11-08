@@ -81,7 +81,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:text="@string/select_time"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -105,7 +105,7 @@
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:text="@string/zhi"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/end_time"

@@ -81,7 +81,10 @@ public class HistoryOrderActivity extends BaseActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(HistoryOrderActivity.this,LookSignNoActivity.class));
+                Intent intent=new Intent();
+                intent.setClass(HistoryOrderActivity.this,LookSignNoActivity.class);
+                intent.putExtra("orderId","5777");
+                startActivity(intent);
             }
         });
     }

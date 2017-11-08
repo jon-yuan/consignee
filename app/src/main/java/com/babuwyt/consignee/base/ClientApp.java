@@ -4,7 +4,7 @@ import android.app.Application;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.babuwyt.consignee.bean.User;
+import com.babuwyt.consignee.bean.login.User;
 import com.babuwyt.consignee.finals.SharePrefKeys;
 import com.babuwyt.consignee.util.SharePreferencesUtils;
 import com.google.gson.Gson;

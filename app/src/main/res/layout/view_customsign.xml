@@ -20,16 +20,17 @@
             android:layout_height="wrap_content"
             android:text="@string/signno1"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_signno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:text="D1515151"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -46,16 +47,17 @@
             android:layout_height="wrap_content"
             android:text="@string/product_company"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_commapy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:text="隆基集团"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -72,15 +74,16 @@
             android:layout_height="wrap_content"
             android:text="@string/shouhuofang"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_shouhuofang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="收货方收货方收货方收货方收货方收货收货方收货货方收货方收货"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -97,15 +100,16 @@
             android:layout_height="wrap_content"
             android:text="@string/address"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -122,17 +126,18 @@
             android:layout_height="wrap_content"
             android:text="@string/linkpersonal"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_link_peisonal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="于少华"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
         <TextView
@@ -140,17 +145,18 @@
             android:layout_height="wrap_content"
             android:text="@string/linkphone"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="于少华"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -167,15 +173,16 @@
             android:layout_height="wrap_content"
             android:text="@string/contractno"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_hetonghao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="H4adwaddaw"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -199,15 +206,16 @@
             android:layout_height="wrap_content"
             android:text="@string/product_name"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_productname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="硅棒"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -229,17 +237,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/product_guige"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tv_guige"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:text="84009-4551"
+                android:text=""
                 android:textColor="@color/black_333"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="normal" />
 
         </LinearLayout>
@@ -255,17 +264,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/product_num"
                 android:textColor="@color/black_333"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tv_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:text="18"
+                android:text=""
                 android:textColor="@color/black_333"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="normal" />
 
         </LinearLayout>
@@ -285,17 +295,18 @@
             android:layout_height="wrap_content"
             android:text="@string/sys_num"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_fading_num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="120根"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
         <TextView
@@ -303,17 +314,18 @@
             android:layout_height="wrap_content"
             android:text="@string/transaction_num"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_chengjiaonum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="18托"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -335,15 +347,16 @@
             android:layout_height="wrap_content"
             android:text="@string/chengyunfang"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_chengyunfang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="万运通"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -359,17 +372,18 @@
             android:layout_height="wrap_content"
             android:text="@string/siji"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_siji"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="于少华"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
         <TextView
@@ -377,17 +391,18 @@
             android:layout_height="wrap_content"
             android:text="@string/chepaihao"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_carno"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:singleLine="true"
-            android:text="陕E12569"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -404,16 +419,17 @@
             android:layout_height="wrap_content"
             android:text="@string/fayun_date"
             android:textColor="@color/black_333"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:text="隆基集团"
+            android:text=""
             android:textColor="@color/black_333"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="normal" />
 
     </LinearLayout>
