@@ -31,8 +31,26 @@ public class OrderEntity {
     private String goodsHedge;
     private String orderState;
     private String type;
+    private String fsendcarid;
+    private String driverName;
     private ArrayList<SignNoEntity> signList;
     private ArrayList<AddressEntity> loadAddressList;
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public String getFsendcarid() {
+        return fsendcarid;
+    }
+
+    public void setFsendcarid(String fsendcarid) {
+        this.fsendcarid = fsendcarid;
+    }
 
     public ArrayList<AddressEntity> getLoadAddressList() {
         return loadAddressList;

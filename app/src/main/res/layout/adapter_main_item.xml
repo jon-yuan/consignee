@@ -270,6 +270,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/main_adapter_item_bottom_shape">
         <LinearLayout
+            android:id="@+id/layout_location"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -294,6 +295,7 @@
             android:layout_height="match_parent"
             android:background="@color/line"/>
         <LinearLayout
+            android:id="@+id/layout_guiji"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -318,6 +320,7 @@
             android:layout_height="match_parent"
             android:background="@color/line"/>
         <LinearLayout
+            android:id="@+id/layout_state"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

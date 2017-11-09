@@ -1,15 +1,20 @@
 package com.babuwyt.consignee.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.bean.order.OrderEntity;
 import com.babuwyt.consignee.bean.signno.SignNoEntity;
+import com.babuwyt.consignee.ui.activity.LocusActivity;
+import com.babuwyt.consignee.ui.activity.PositionActivity;
+import com.babuwyt.consignee.ui.activity.StateFollowActivity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -51,7 +56,7 @@ public class MainAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder holder = null;
         if (view == null) {
             holder = new ViewHolder();
@@ -96,6 +101,35 @@ public class MainAdapter extends BaseAdapter {
                 break;
         }
 
+        holder.layout_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(mContext, PositionActivity.class);
+                intent.putExtra("fsendcarid",mList.get(i).getFsendcarid());
+                intent.putExtra("drivername",mList.get(i).getDriverName());
+                mContext.startActivity(intent);
+            }
+        });
+        holder.layout_guiji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(mContext, LocusActivity.class);
+                intent.putExtra("fsendcarid",mList.get(i).getFsendcarid());
+                mContext.startActivity(intent);
+            }
+        });
+        holder.layout_state.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(mContext, StateFollowActivity.class);
+                intent.putExtra("orderId",mList.get(i).getOrderId());
+                mContext.startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -116,6 +150,12 @@ public class MainAdapter extends BaseAdapter {
         TextView tv_no3;
         @ViewInject(R.id.tv_no4)
         TextView tv_no4;
+        @ViewInject(R.id.layout_location)
+        LinearLayout layout_location;
+        @ViewInject(R.id.layout_guiji)
+        LinearLayout layout_guiji;
+        @ViewInject(R.id.layout_state)
+        LinearLayout layout_state;
     }
 
 }

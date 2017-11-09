@@ -26,6 +26,15 @@ public class SignNoEntity {
     private String sendTime;
     private String orderNumber;
     private String addressDetails;
+    private int signState;
+
+    public int getSignState() {
+        return signState;
+    }
+
+    public void setSignState(int signState) {
+        this.signState = signState;
+    }
 
     public String getSignNo() {
         return signNo;

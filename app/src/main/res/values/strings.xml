@@ -81,6 +81,11 @@
     <string name="HAS_SEND_TO">已发送</string>
     <string name="CHANGE_SUCCESS">修改成功</string>
     <string name="huozhu">货主</string>
+    <string name="wan">完</string>
+    <string name="dingdanwancheng">订单完成</string>
+    <string name="NET_ERROR">网络异常</string>
+    <string name="pai">派</string>
+    <string name="order_follow">订单跟踪</string>
     <string-array name="search_type">
 
         <item>全部</item>

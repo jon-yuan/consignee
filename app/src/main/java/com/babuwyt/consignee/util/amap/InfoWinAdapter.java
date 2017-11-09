@@ -2,6 +2,7 @@ package com.babuwyt.consignee.util.amap;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.babuwyt.consignee.R;
+import com.babuwyt.consignee.bean.location.LocusEntity;
+import com.babuwyt.consignee.bean.location.Result;
 
 
 /**
@@ -24,44 +27,47 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
 
     private TextView TVname;
     private TextView TVaddress;
-    public InfoWinAdapter(Context context){
-        mContext=context;
+    private String mName;
+    private String mAddress;
+
+    public InfoWinAdapter(Context context) {
+        mContext = context;
     }
-    public void setData(String name,String address){
-        TVname.setText(name);
-        TVaddress.setText(address);
+    @NonNull
+    private View initView() {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.view_infowindow, null);
+        return view;
     }
 
     @Override
     public View getInfoWindow(Marker marker) {
-        initData(marker);
+        Result res = (Result) marker.getObject();
         View view = initView();
+        TVname = view.findViewById(R.id.name);
+        TVaddress = view.findViewById(R.id.address);
+        TVname.setText(res.getName());
+        TVaddress.setText(res.getAddress());
+        initData(marker);
         return view;
     }
+
     @Override
     public View getInfoContents(Marker marker) {
         return null;
     }
 
+
     private void initData(Marker marker) {
         latLng = marker.getPosition();
         snippet = marker.getSnippet();
         agentName = marker.getTitle();
-    }
 
-    @NonNull
-    private View initView() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.view_infowindow, null);
-        TVname=view.findViewById(R.id.name);
-        TVaddress=view.findViewById(R.id.address);
-        return view;
     }
-
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
 //            case R.id.navigation_LL:  //点击导航
 //                UHelper.showToast(mContext,"导航");
 //                break;
