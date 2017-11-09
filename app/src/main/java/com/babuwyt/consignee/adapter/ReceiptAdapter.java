@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.babuwyt.consignee.R;
+import com.babuwyt.consignee.bean.signno.SignNoEntity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -20,15 +21,15 @@ import java.util.ArrayList;
  */
 
 public class ReceiptAdapter extends BaseAdapter {
-    private ArrayList<String> mList;
+    private ArrayList<SignNoEntity> mList;
     private Context mContext;
 
     public ReceiptAdapter(Context context){
         mContext=context;
-        mList=new ArrayList<String>();
+        mList=new ArrayList<SignNoEntity>();
     }
 
-    public void setmList(ArrayList<String> list){
+    public void setmList(ArrayList<SignNoEntity> list){
         if (list!=null){
             mList=list;
         }
@@ -60,9 +61,9 @@ public class ReceiptAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) view.getTag();
         }
-            holder.img_qianshou.setVisibility(i==0?View.VISIBLE:View.INVISIBLE);
-            holder.img_next.setVisibility(i==0?View.INVISIBLE:View.VISIBLE);
-            holder.tv_num.setText(mList.get(i));
+            holder.img_qianshou.setVisibility(mList.get(i).getSignState()==1?View.VISIBLE:View.INVISIBLE);
+            holder.img_next.setVisibility(mList.get(i).getSignState()==1?View.INVISIBLE:View.VISIBLE);
+            holder.tv_num.setText(mList.get(i).getSignNo());
 
         return view;
     }

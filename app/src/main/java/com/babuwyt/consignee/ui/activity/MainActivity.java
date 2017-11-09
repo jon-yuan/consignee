@@ -140,6 +140,7 @@ public class MainActivity extends BaseActivity
         switch (v.getId()){
             case R.id.tv_qianshou:
                 startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
+//                startActivity(new Intent(MainActivity.this,RQcodeBatmapActivity.class));
                 break;
         }
     }

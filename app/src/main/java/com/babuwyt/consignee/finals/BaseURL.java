@@ -58,6 +58,11 @@ public class BaseURL {
      * 获取轨迹路线
      */
     public static final String GETWORKTRACK=BASE_URL+"appcommon/getworktrack";
+
+    /**
+     * 获取扫描后的签收单
+     */
+    public static final String SIGN_NOTE=BASE_URL+"AppConsignee/signNote";
     /**
      * 检测版本
      *

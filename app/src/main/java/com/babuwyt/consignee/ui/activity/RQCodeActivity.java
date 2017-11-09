@@ -72,14 +72,12 @@ public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate{
     @Override
     public void onScanQRCodeSuccess(String result) {
         vibrate();
-//        Intent intent=new Intent();
-//        intent.putExtra("rqcode",result);
-//        setResult(1,intent);
-//        finish();
-        UHelper.showToast(this,result);
-//        mQRCodeView.startSpot();
+        Intent intent=new Intent();
+        intent.setClass(this,ReceiptListActivity.class);
+        intent.putExtra("rqcode",result);
+        startActivity(intent);
         finish();
-        startActivity(new Intent(this,ReceiptListActivity.class));
+
     }
 
     @Override
