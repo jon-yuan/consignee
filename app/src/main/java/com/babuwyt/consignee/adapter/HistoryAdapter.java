@@ -23,11 +23,13 @@ public class HistoryAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<HistoryOrderEntity> mList;
     private TextView tv_ordernum;
-    public HistoryAdapter(Context context,TextView textView) {
+
+    public HistoryAdapter(Context context, TextView textView) {
         mContext = context;
-        tv_ordernum=textView;
+        tv_ordernum = textView;
         mList = new ArrayList<HistoryOrderEntity>();
     }
+
     public HistoryAdapter(Context context) {
         mContext = context;
         mList = new ArrayList<HistoryOrderEntity>();
@@ -43,8 +45,8 @@ public class HistoryAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
-        if (tv_ordernum!=null){
-            tv_ordernum.setText(mList.size()+"");
+        if (tv_ordernum != null) {
+            tv_ordernum.setText(mList.size() + "");
         }
     }
 
@@ -75,8 +77,8 @@ public class HistoryAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         holder.tv_ordernum.setText(mList.get(i).getSignNo());
-        holder.tv_luxian.setText(mList.get(i).getStartPlace()+" --- "+mList.get(i).getEndPlace());
-        holder.tv_time.setText(mList.get(i).getStartTime()+" --- "+mList.get(i).getEndTime());
+        holder.tv_luxian.setText(mList.get(i).getStartPlace() + " --- " + mList.get(i).getEndPlace());
+        holder.tv_time.setText(mList.get(i).getStartTime() + " --- " + mList.get(i).getEndTime());
         return view;
     }
 
