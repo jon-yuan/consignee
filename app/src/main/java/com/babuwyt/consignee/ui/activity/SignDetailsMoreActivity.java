@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by lenovo on 2017/11/6.
  */
 @ContentView(R.layout.activity_looksignno)
-public class LookSignNoActivity extends BaseActivity {
+public class SignDetailsMoreActivity extends BaseActivity {
     @ViewInject(R.id.toolbar)
     Toolbar toolbar;
     @ViewInject(R.id.title)
@@ -82,7 +82,7 @@ public class LookSignNoActivity extends BaseActivity {
                         setmList(mList);
                     }
                 } else {
-                    UHelper.showToast(LookSignNoActivity.this, result.getMsg());
+                    UHelper.showToast(SignDetailsMoreActivity.this, result.getMsg());
                 }
             }
 

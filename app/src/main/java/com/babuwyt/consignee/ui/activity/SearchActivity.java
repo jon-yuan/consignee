@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,6 +12,7 @@ import android.widget.TextView;
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.HistoryAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
+import com.babuwyt.consignee.bean.order.HistoryOrderEntity;
 import com.bigkoo.pickerview.OptionsPickerView;
 
 import org.xutils.view.annotation.ContentView;
@@ -32,7 +31,7 @@ public class SearchActivity extends BaseActivity {
     @ViewInject(R.id.tv_type)
     TextView tv_type;
     private HistoryAdapter mAdapter;
-    private ArrayList<String> mList;
+    private ArrayList<HistoryOrderEntity> mList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +41,15 @@ public class SearchActivity extends BaseActivity {
 
     private void init() {
         mAdapter=new HistoryAdapter(this);
-        mList=new ArrayList<String>();
-        mList.add("1");
-        mList.add("1");
-        mList.add("1");
+        mList=new ArrayList<HistoryOrderEntity>();
+
         mAdapter.setmList(mList);
         listview.setAdapter(mAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
-                intent.setClass(SearchActivity.this,LookSignNoActivity.class);
+                intent.setClass(SearchActivity.this,SignDetailsMoreActivity.class);
                 intent.putExtra("orderId","5777");
                 startActivity(intent);
             }

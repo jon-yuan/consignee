@@ -17,6 +17,12 @@ import android.widget.TextView;
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.HistoryAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
+import com.babuwyt.consignee.base.SessionManager;
+import com.babuwyt.consignee.bean.order.HistoryOrderBean;
+import com.babuwyt.consignee.bean.order.HistoryOrderEntity;
+import com.babuwyt.consignee.finals.BaseURL;
+import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
+import com.babuwyt.consignee.util.request.XUtil;
 import com.bigkoo.pickerview.TimePickerView;
 
 import org.xutils.view.annotation.ContentView;
@@ -25,6 +31,8 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lenovo on 2017/11/7.
@@ -43,12 +51,14 @@ public class HistoryOrderActivity extends BaseActivity{
     TextView end_time;
 
     private HistoryAdapter mAdapter;
-    private ArrayList<String> mList;
+    private ArrayList<HistoryOrderEntity> mList;
+    private int pageNum=1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBar(true);
         init();
+        getHttp();
     }
 
     private void init() {
@@ -71,18 +81,16 @@ public class HistoryOrderActivity extends BaseActivity{
                 return true;
             }
         });
-        mAdapter=new HistoryAdapter(this);
-        mList=new ArrayList<String>();
-        mList.add("1");
-        mList.add("1");
-        mList.add("1");
+        mAdapter=new HistoryAdapter(this,tv_ordernum);
+        mList=new ArrayList<HistoryOrderEntity>();
+
         mAdapter.setmList(mList);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
-                intent.setClass(HistoryOrderActivity.this,LookSignNoActivity.class);
+                intent.setClass(HistoryOrderActivity.this,SignDetailsMoreActivity.class);
                 intent.putExtra("orderId","5777");
                 startActivity(intent);
             }
@@ -108,6 +116,32 @@ public class HistoryOrderActivity extends BaseActivity{
         }
     }
 
+    private void getHttp(){
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("fid", SessionManager.getInstance().getUser().getFid());
+        map.put("pageNum",pageNum);
+        map.put("type",1);
+        map.put("inputeStr","");
+        map.put("startTime","");
+        map.put("endTime","");
+        XUtil.PostJsonObj(BaseURL.HISTORY_ORDER,map,new ResponseCallBack<HistoryOrderBean>(){
+            @Override
+            public void onSuccess(HistoryOrderBean result) {
+                super.onSuccess(result);
+                if (result.isSuccess()){
+                    mList.clear();
+                    mList.addAll(result.getObj());
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+            }
+        });
+    }
+
     /**
      * 选择时间
      */
@@ -126,13 +160,5 @@ public class HistoryOrderActivity extends BaseActivity{
                 .build();
         pvTime.show();
 
-    }
-
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        tv_ordernum.setText(mList.size()+"");
     }
 }

@@ -13,22 +13,20 @@ import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.MainAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
 import com.babuwyt.consignee.base.SessionManager;
+import com.babuwyt.consignee.bean.order.ComNumBean;
+import com.babuwyt.consignee.bean.order.ComNumEntity;
 import com.babuwyt.consignee.bean.order.OrderBean;
 import com.babuwyt.consignee.bean.order.OrderEntity;
 import com.babuwyt.consignee.bean.version.VersionBean;
@@ -41,6 +39,7 @@ import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseProgressCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.babuwyt.consignee.views.dialog.ShaixuanDialog;
+import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
@@ -70,6 +69,7 @@ public class MainActivity extends BaseActivity
     private ArrayList<OrderEntity> mList;
     private MainAdapter mAdapter;
     private int pageNum=1;//分页
+    private ArrayList<ComNumEntity> entities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +78,7 @@ public class MainActivity extends BaseActivity
         registerMessageReceiver();
         getVersion();
         getOrder();
+        getComNum();
     }
 
 
@@ -128,7 +129,7 @@ public class MainActivity extends BaseActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
-                intent.setClass(MainActivity.this,LookSignNoActivity.class);
+                intent.setClass(MainActivity.this,SignDetailsMoreActivity.class);
                 intent.putExtra("orderId",mList.get(i).getOrderId());
                 startActivity(intent);
             }
@@ -139,8 +140,11 @@ public class MainActivity extends BaseActivity
     private void getE(View v){
         switch (v.getId()){
             case R.id.tv_qianshou:
-                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
-//                startActivity(new Intent(MainActivity.this,RQcodeBatmapActivity.class));
+//                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
+                Intent intent=new Intent();
+                intent.setClass(this,ReceiptListActivity.class);
+                intent.putExtra("rqcode","D17220171106001");
+                startActivity(intent);
                 break;
         }
     }
@@ -186,12 +190,13 @@ public class MainActivity extends BaseActivity
     private void showShaixuan(){
         final ShaixuanDialog dialog=new ShaixuanDialog(this);
         dialog.create();
+        dialog.setmList(entities);
         dialog.show();
         dialog.setCallBack(new ShaixuanDialog.CallBack() {
             @Override
-            public void CallBack(String s) {
+            public void CallBack(ArrayList<ComNumEntity> list) {
                 dialog.dismiss();
-                UHelper.showToast(MainActivity.this,s);
+                UHelper.showToast(MainActivity.this,new Gson().toJson(list));
             }
         });
     }
@@ -297,6 +302,27 @@ public class MainActivity extends BaseActivity
                 super.onError(ex, isOnCallback);
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
+            }
+        });
+    }
+
+    private void getComNum(){
+        ArrayList<String> list=new ArrayList<String>();
+        list.add(SessionManager.getInstance().getUser().getFid());
+        XUtil.GetPing(BaseURL.COMPACTNUM,list,new ResponseCallBack<ComNumBean>(){
+            @Override
+            public void onSuccess(ComNumBean result) {
+                super.onSuccess(result);
+                if (result.isSuccess()){
+                    entities=result.getObj();
+                    Log.d("",new Gson().toJson(result.getObj()));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                Log.d("=dadawd=",ex+"");
             }
         });
     }

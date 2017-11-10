@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <com.babuwyt.consignee.views.CustomSignView
+                android:id="@+id/customsignview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"

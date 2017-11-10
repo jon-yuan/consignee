@@ -15,6 +15,7 @@ public class BaseURL {
 //    public static final String BASE_URL = "http://www.babuwyt.com:8080/tmsapi//";//测试服务器地址
 //    public static final String BASE_URL = "http://123.206.75.242:8090/tmsapi/";//测试服务器地址
     public static final String BASE_URL = "http://192.168.2.224:8080/tmsapi/";//张瑞宝主机
+//    public static final String BASE_URL = "http://192.168.2.17:8080/api/";//我的主机
 //    public static final String BASE_URL = "http://119.29.230.77:8090/tmsapi/";//正式服务器地址
 //    private static final String BASE_URL = "http://192.168.2.71:8090/";
     public static final String BASE_IMAGE_URI = "http://bbkj-1253538594.picgz.myqcloud.com/";
@@ -63,6 +64,18 @@ public class BaseURL {
      * 获取扫描后的签收单
      */
     public static final String SIGN_NOTE=BASE_URL+"AppConsignee/signNote";
+    /**
+     * 获取单个签收单
+     */
+    public static final String SIGNNOTEDETAILS=BASE_URL+"AppConsignee/signNoteDetails";
+    /**
+     * 获取所有合同号
+     */
+    public static final String COMPACTNUM=BASE_URL+"AppConsignee/getCompactNum";
+    /**
+     * 历史订单
+     */
+    public static final String HISTORY_ORDER=BASE_URL+"AppConsignee/historyOrder";
     /**
      * 检测版本
      *
