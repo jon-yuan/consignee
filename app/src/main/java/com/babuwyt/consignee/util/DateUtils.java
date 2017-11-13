@@ -72,9 +72,28 @@ public class DateUtils {
         }
         return times;
     }
+    /**
+     * 返回时间戳
+     *
+     * @param time
+     * @return
+     */
+    public static long getStringtoLong(String time, String type) {
+        SimpleDateFormat sdr = new SimpleDateFormat(type,
+                Locale.CHINA);
+        Date date;
+        long l = 0;
+        try {
+            date = sdr.parse(time);
+            l = date.getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return l;
+    }
 
-    public static String getTodayDateTimes() {
-        SimpleDateFormat format = new SimpleDateFormat("MM月dd日",
+    public static String getTodayDateTimes(String type) {
+        SimpleDateFormat format = new SimpleDateFormat(type,
                 Locale.getDefault());
         return format.format(new Date());
     }

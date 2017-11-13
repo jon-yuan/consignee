@@ -63,6 +63,7 @@
     <string name="qianshoudan">签收单</string>
     <string name="saomiao">扫描</string>
     <string name="cancal">取消</string>
+    <string name="cancel">取消</string>
     <string name="prompt">提示</string>
     <string name="PROMPT_PSD_FORMAT_IS_NOT_TRUE">密码格式不正确</string>
     <string name="MAKETRUE_PSD_IS_SUCCESS">请确认密码是否相同</string>
@@ -86,6 +87,7 @@
     <string name="NET_ERROR">网络异常</string>
     <string name="pai">派</string>
     <string name="order_follow">订单跟踪</string>
+    <string name="onclickisexit">再点击退出应用</string>
     <string-array name="search_type">
 
         <item>全部</item>

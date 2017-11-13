@@ -48,19 +48,30 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="1.0">
 
-        <ListView
-            android:id="@+id/listView"
+
+
+
+        <com.liaoinstan.springview.widget.SpringView
+            android:id="@+id/springview"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="0dp"
             android:background="@color/white"
-            android:divider="@color/line"
-            android:dividerHeight="1px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintTop_toBottomOf="@+id/view2" >
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:divider="@color/line"
+                android:dividerHeight="1px"/>
+        </com.liaoinstan.springview.widget.SpringView>
+
 
         <LinearLayout
             android:id="@+id/linearLayout3"

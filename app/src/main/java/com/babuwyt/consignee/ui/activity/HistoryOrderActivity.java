@@ -21,9 +21,14 @@ import com.babuwyt.consignee.base.SessionManager;
 import com.babuwyt.consignee.bean.order.HistoryOrderBean;
 import com.babuwyt.consignee.bean.order.HistoryOrderEntity;
 import com.babuwyt.consignee.finals.BaseURL;
+import com.babuwyt.consignee.util.DateUtils;
+import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.bigkoo.pickerview.TimePickerView;
+import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.widget.SpringView;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -49,10 +54,14 @@ public class HistoryOrderActivity extends BaseActivity{
     TextView start_time;
     @ViewInject(R.id.end_time)
     TextView end_time;
+    @ViewInject(R.id.springview)
+    SpringView springview;
 
     private HistoryAdapter mAdapter;
     private ArrayList<HistoryOrderEntity> mList;
     private int pageNum=1;
+    private String startTime;
+    private String endTime;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +100,21 @@ public class HistoryOrderActivity extends BaseActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
                 intent.setClass(HistoryOrderActivity.this,SignDetailsMoreActivity.class);
-                intent.putExtra("orderId","5777");
+                intent.putExtra("orderId",mList.get(i).getOrderId());
                 startActivity(intent);
+            }
+        });
+        springview.setHeader(new DefaultHeader(this));
+        springview.setFooter(new DefaultFooter(this));
+        springview.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                getHttp();
+            }
+
+            @Override
+            public void onLoadmore() {
+                getHttpMore();
             }
         });
     }
@@ -107,27 +129,29 @@ public class HistoryOrderActivity extends BaseActivity{
     private void getE(View v){
         switch (v.getId()){
             case R.id.end_time:
-                showTimeSelect(end_time);
+                showTimeSelect(end_time,2);
                 break;
 
             case R.id.start_time:
-                showTimeSelect(start_time);
+                showTimeSelect(start_time,1);
                 break;
         }
     }
 
     private void getHttp(){
+        pageNum=1;
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum",pageNum);
         map.put("type",1);
         map.put("inputeStr","");
-        map.put("startTime","");
-        map.put("endTime","");
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
         XUtil.PostJsonObj(BaseURL.HISTORY_ORDER,map,new ResponseCallBack<HistoryOrderBean>(){
             @Override
             public void onSuccess(HistoryOrderBean result) {
                 super.onSuccess(result);
+                springview.onFinishFreshAndLoad();
                 if (result.isSuccess()){
                     mList.clear();
                     mList.addAll(result.getObj());
@@ -138,6 +162,34 @@ public class HistoryOrderActivity extends BaseActivity{
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 super.onError(ex, isOnCallback);
+                springview.onFinishFreshAndLoad();
+            }
+        });
+    }
+    private void getHttpMore(){
+        pageNum++;
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("fid", SessionManager.getInstance().getUser().getFid());
+        map.put("pageNum",pageNum);
+        map.put("type",1);
+        map.put("inputeStr","");
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        XUtil.PostJsonObj(BaseURL.HISTORY_ORDER,map,new ResponseCallBack<HistoryOrderBean>(){
+            @Override
+            public void onSuccess(HistoryOrderBean result) {
+                super.onSuccess(result);
+                springview.onFinishFreshAndLoad();
+                if (result.isSuccess()){
+                    mList.addAll(result.getObj());
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                springview.onFinishFreshAndLoad();
             }
         });
     }
@@ -146,14 +198,36 @@ public class HistoryOrderActivity extends BaseActivity{
      * 选择时间
      */
 
-    private void showTimeSelect(final TextView textView){
+    private void showTimeSelect(final TextView textView, final int type){
         TimePickerView pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
-                SimpleDateFormat timeformat=new SimpleDateFormat("yyyy年MM月dd号");
+                String timeType="yyyy-MM-dd";
+                SimpleDateFormat timeformat=new SimpleDateFormat(timeType);
                 String time=timeformat.format(date);
-                textView.setText(time);
+                if (type==1){
+                    long newtimes=DateUtils.getStringtoLong(timeformat.format(new Date()),timeType);
+                    long selecttimes=DateUtils.getStringtoLong(time,timeType);
+                    if (selecttimes>newtimes){
+                        UHelper.showToast(HistoryOrderActivity.this,"开始时间不能大于当前时间");
+                    }else {
+                        startTime=time;
+                        textView.setText(startTime);
+                    }
+                }else {
+                    long starttimes=DateUtils.getStringtoLong(startTime,timeType);
+                    long endtimes=DateUtils.getStringtoLong(time,timeType);
+
+                    if (starttimes>=endtimes){
+                        UHelper.showToast(HistoryOrderActivity.this,"结束时间不能小于或等于开始时间");
+                    }else {
+                        endTime=time;
+                        textView.setText(endTime);
+                        getHttp();
+                    }
+
+                }
             }
         }).setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
                 .setLabel("年","月","日","","","")//默认设置为年月日时分秒

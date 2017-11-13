@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 @HttpResponse(parser = JsonResponseParser.class)
 public class OrderBean extends BaseBean {
-    private ArrayList<OrderEntity> obj;
+    private OrderBaseEntity obj;
 
-    public ArrayList<OrderEntity> getObj() {
+    public OrderBaseEntity getObj() {
         return obj;
     }
 
-    public void setObj(ArrayList<OrderEntity> obj) {
+    public void setObj(OrderBaseEntity obj) {
         this.obj = obj;
     }
 }

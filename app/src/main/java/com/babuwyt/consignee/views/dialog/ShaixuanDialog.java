@@ -94,10 +94,10 @@ public class ShaixuanDialog extends Dialog {
         tv_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<ComNumEntity> list = new ArrayList<ComNumEntity>();
+                ArrayList<String> list = new ArrayList<String>();
                 for (ComNumEntity entity : mList) {
                     if (entity.isSelect()) {
-                        list.add(entity);
+                        list.add(entity.getComNum());
                     }
                 }
                 callBack.CallBack(list);
@@ -118,11 +118,10 @@ public class ShaixuanDialog extends Dialog {
             mList.addAll(list);
             adapter.notifyDataSetChanged();
         }
-        Log.d("数据1", new Gson().toJson(mList));
     }
 
     public interface CallBack {
-        void CallBack(ArrayList<ComNumEntity> list);
+        void CallBack(ArrayList<String> list);
     }
 
     private CallBack callBack;
