@@ -1,5 +1,6 @@
 package com.babuwyt.consignee.ui.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -7,12 +8,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -38,6 +44,7 @@ import com.babuwyt.consignee.bean.order.OrderEntity;
 import com.babuwyt.consignee.bean.version.VersionBean;
 import com.babuwyt.consignee.bean.version.VersionEntity;
 import com.babuwyt.consignee.finals.BaseURL;
+import com.babuwyt.consignee.finals.Constants;
 import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.jpush.LocalBroadcastManager;
 import com.babuwyt.consignee.util.jpush.Util;
@@ -150,17 +157,56 @@ public class MainActivity extends BaseActivity
         });
     }
 
-    @Event(value = {R.id.tv_qianshou})
-    private void getE(View v) {
-        switch (v.getId()) {
-            case R.id.tv_qianshou:
-                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
-//                Intent intent = new Intent();
-//                intent.setClass(this, ReceiptListActivity.class);
-//                intent.putExtra("rqcode", "D17220171106001");
-//                startActivity(intent);
-                break;
+//    @Event(value = {R.id.tv_qianshou})
+//    private void getE(View v) {
+//        switch (v.getId()) {
+//            case R.id.tv_qianshou:
+////                isCamera();
+//                break;
+//        }
+//    }
+    //检查拍照权限，动态设置
+    private void isCamera(){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    Constants.MY_PERMISSIONS_REQUEST_CAMERA);
+        } else {
+            startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
         }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        if (requestCode == Constants.MY_PERMISSIONS_REQUEST_CAMERA) {
+            if (grantResults.length<=0 || grantResults[0]!= PackageManager.PERMISSION_GRANTED) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                builder.setMessage("您没有授权成功，无法使用相机进行拍照功能，请前往设置授权！");
+                builder.setTitle("授权失败");
+                builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNegativeButton("好", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent =  new Intent(Settings.ACTION_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+                builder.setCancelable(false);
+                builder.create().show();
+            } else {
+                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
+            }
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -522,11 +568,8 @@ public class MainActivity extends BaseActivity
                         break;
                     case MotionEvent.ACTION_UP:
                         long endtime=System.currentTimeMillis();
-                        if (endtime- starttime<500){
-                            Intent intent = new Intent();
-                            intent.setClass(this, ReceiptListActivity.class);
-                            intent.putExtra("rqcode", "D17220171106001");
-                            startActivity(intent);
+                        if (endtime- starttime<200){
+                            isCamera();
                         }
                         break;
                     default:

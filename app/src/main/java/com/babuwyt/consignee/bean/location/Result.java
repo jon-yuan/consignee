@@ -36,4 +36,13 @@ public class Result {
     public void setGps(LocusEntity gps) {
         this.gps = gps;
     }
+
+    /**
+     *
+     * {"name":"张三李四","address":"港务区XXXXX","gps":{"wgLon":130.0000,"wgLat":31.0000}}
+     *
+     *
+     *
+     *
+     */
 }
