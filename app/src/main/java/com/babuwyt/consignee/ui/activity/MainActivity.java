@@ -47,6 +47,7 @@ import com.babuwyt.consignee.finals.BaseURL;
 import com.babuwyt.consignee.finals.Constants;
 import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.jpush.LocalBroadcastManager;
+import com.babuwyt.consignee.util.jpush.TagAliasOperatorHelper;
 import com.babuwyt.consignee.util.jpush.Util;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseProgressCallBack;
@@ -65,6 +66,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.jpush.android.api.JPushInterface;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
@@ -93,11 +96,13 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setStatusBar(false);
         init();
+        setAlias();
         setLister();
         registerMessageReceiver();
         getVersion();
         getOrder();
         getComNum();
+
     }
 
 
@@ -263,7 +268,11 @@ public class MainActivity extends BaseActivity
             }
         });
     }
-
+    private void setAlias(){
+        TagAliasOperatorHelper.TagAliasBean tagAliasBean= new TagAliasOperatorHelper.TagAliasBean();
+//        TagAliasOperatorHelper.TagAliasBean.
+//        TagAliasOperatorHelper.getInstance().handleAction(this,1,);
+    }
     /**
      * 极光推送
      */

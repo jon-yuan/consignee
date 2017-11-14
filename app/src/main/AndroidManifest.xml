@@ -146,7 +146,7 @@
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
 
         <!-- Required SDK核心功能-->
         <activity
