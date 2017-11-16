@@ -30,11 +30,13 @@
                 android:textSize="14sp" />
 
             <RadioGroup
+                android:id="@+id/group_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|right"
                 android:orientation="horizontal">
                 <RadioButton
+                    android:id="@+id/radio1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -43,6 +45,7 @@
                     android:text="@string/shi"/>
 
                 <RadioButton
+                    android:id="@+id/radio2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textColor="@color/black_333"
@@ -66,11 +69,13 @@
                 android:textSize="14sp" />
 
             <RadioGroup
+                android:id="@+id/group_ok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|right"
                 android:orientation="horizontal">
                 <RadioButton
+                    android:id="@+id/radio3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -79,6 +84,7 @@
                     android:text="@string/shi"/>
 
                 <RadioButton
+                    android:id="@+id/radio4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textColor="@color/black_333"
@@ -98,6 +104,7 @@
 
 
         <EditText
+            android:id="@+id/et_remark"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@drawable/default_background_edittext_gray_line_5"

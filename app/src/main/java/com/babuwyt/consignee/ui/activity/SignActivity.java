@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.babuwyt.consignee.views.CustomViewPager;
+import com.google.gson.Gson;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -66,6 +68,8 @@ public class SignActivity extends BaseActivity {
         fragmentTwo=new SignDetailsFragmentTwo();
         mList.add(fragmentOne);
         mList.add(fragmentTwo);
+
+
         mAdapter=new SignDetailsAdapter(getSupportFragmentManager(),mList);
         viewpager.setAdapter(mAdapter);
         viewpager.setOffscreenPageLimit(2);
@@ -73,6 +77,11 @@ public class SignActivity extends BaseActivity {
             @Override
             public void callBackOne(String s) {
                 viewpager.setCurrentItem(1);
+            }
+        });
+        fragmentTwo.setConfirmCallBack(new SignDetailsFragmentTwo.confirmCallBack() {
+            @Override
+            public void callback(Object o) {
             }
         });
     }
