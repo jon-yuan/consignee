@@ -88,6 +88,9 @@
     <string name="pai">派</string>
     <string name="order_follow">订单跟踪</string>
     <string name="onclickisexit">再点击退出应用</string>
+    <string name="PLEASE_INPUT_AUTHCODE">请输入验证码</string>
+    <string name="phone">手机</string>
+    <string name="bind_phone">绑定手机</string>
     <string-array name="search_type">
 
         <item>全部</item>

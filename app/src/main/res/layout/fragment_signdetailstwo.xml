@@ -164,6 +164,7 @@
                 android:textColor="@color/black_333"
                 android:textSize="14sp"/>
             <TextView
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2017年8月25日"

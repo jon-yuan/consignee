@@ -21,12 +21,13 @@ import cn.bingoogolapple.qrcode.zxing.ZXingView;
  * Created by lenovo on 2017/9/25.
  */
 @ContentView(R.layout.activity_rqcode)
-public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate{
+public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate {
     private static final int REQUEST_CODE_CHOOSE_QRCODE_FROM_GALLERY = 666;
     @ViewInject(R.id.toolbar)
     Toolbar toolbar;
     @ViewInject(R.id.zxingview)
     ZXingView mQRCodeView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate{
         });
         mQRCodeView.setDelegate(this);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -65,16 +67,18 @@ public class RQCodeActivity extends BaseActivity implements QRCodeView.Delegate{
         mQRCodeView.onDestroy();
         super.onDestroy();
     }
+
     private void vibrate() {
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(200);
     }
+
     @Override
     public void onScanQRCodeSuccess(String result) {
         vibrate();
-        Intent intent=new Intent();
-        intent.setClass(this,ReceiptListActivity.class);
-        intent.putExtra("rqcode",result);
+        Intent intent = new Intent();
+        intent.setClass(this, ReceiptListActivity.class);
+        intent.putExtra("rqcode", result);
         startActivity(intent);
         finish();
 

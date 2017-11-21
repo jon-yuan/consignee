@@ -65,10 +65,13 @@ public class ReceiptListActivity extends BaseActivity {
                 Intent intent=new Intent();
                 if (mList.get(i).getSignState()==1){
                     intent.setClass(ReceiptListActivity.this,SignDetailsActivity.class);
+//                    intent.setClass(ReceiptListActivity.this,SignNomalActivity.class);
                     intent.putExtra("signNo",mList.get(i).getSignNo());
+//                    intent.putExtra("signNo","DOC20171106-04");
                 }else{
-                    intent.setClass(ReceiptListActivity.this,SignActivity.class);
+                    intent.setClass(ReceiptListActivity.this,SignNomalActivity.class);
                     intent.putExtra("signNo",mList.get(i).getSignNo());
+//                    intent.putExtra("signNo","DOC20171106-04");
                 }
                 startActivity(intent);
             }

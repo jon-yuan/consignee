@@ -19,6 +19,9 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by lenovo on 2017/11/6.
  */
@@ -33,6 +36,8 @@ public class SignDetailsFragmentTwo extends BaseFragment {
     EditText et_remark;
     @ViewInject(R.id.tv_confirm)
     TextView tv_confirm;
+    @ViewInject(R.id.time)
+    TextView time;
 
     private int numTrue=1;//数量正确
     private int okTrue=1;//包装正确
@@ -48,6 +53,9 @@ public class SignDetailsFragmentTwo extends BaseFragment {
     }
 
     private void init() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        String date=sdf.format(new Date());
+        time.setText(date);
         group_num.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -81,9 +89,9 @@ public class SignDetailsFragmentTwo extends BaseFragment {
             case R.id.tv_confirm:
                 JSONObject jsonObject=new JSONObject();
                 try {
-                    jsonObject.put("numTrue",numTrue);
-                    jsonObject.put("okTrue",okTrue);
-                    jsonObject.put("input",et_remark.getText().toString());
+                    jsonObject.put("qtycheck",numTrue);
+                    jsonObject.put("packcheck",okTrue);
+                    jsonObject.put("remark",et_remark.getText().toString());
                     confirmCallBack.callback(jsonObject);
                 } catch (JSONException e) {
                     e.printStackTrace();

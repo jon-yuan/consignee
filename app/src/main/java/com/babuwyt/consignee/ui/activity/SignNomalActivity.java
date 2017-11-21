@@ -1,5 +1,6 @@
 package com.babuwyt.consignee.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,10 @@ import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.SignDetailsAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
 import com.babuwyt.consignee.base.SessionManager;
+import com.babuwyt.consignee.bean.BaseBean;
 import com.babuwyt.consignee.bean.signno.SignNoBean;
+import com.babuwyt.consignee.bean.signno.SignSuccessBean;
+import com.babuwyt.consignee.bean.signno.URLBean;
 import com.babuwyt.consignee.finals.BaseURL;
 import com.babuwyt.consignee.ui.fragment.SignDetailsFragmentOne;
 import com.babuwyt.consignee.ui.fragment.SignDetailsFragmentTwo;
@@ -22,6 +26,8 @@ import com.babuwyt.consignee.util.request.XUtil;
 import com.babuwyt.consignee.views.CustomViewPager;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -34,7 +40,7 @@ import java.util.Map;
  * 电子签收详情
  */
 @ContentView(R.layout.activity_sign)
-public class SignActivity extends BaseActivity {
+public class SignNomalActivity extends BaseActivity {
     @ViewInject(R.id.toolbar)
     Toolbar toolbar;
     @ViewInject(R.id.title)
@@ -68,8 +74,6 @@ public class SignActivity extends BaseActivity {
         fragmentTwo=new SignDetailsFragmentTwo();
         mList.add(fragmentOne);
         mList.add(fragmentTwo);
-
-
         mAdapter=new SignDetailsAdapter(getSupportFragmentManager(),mList);
         viewpager.setAdapter(mAdapter);
         viewpager.setOffscreenPageLimit(2);
@@ -82,6 +86,15 @@ public class SignActivity extends BaseActivity {
         fragmentTwo.setConfirmCallBack(new SignDetailsFragmentTwo.confirmCallBack() {
             @Override
             public void callback(Object o) {
+                JSONObject object= (JSONObject) o;
+                try {
+                    int qtycheck=object.getInt("qtycheck");
+                    int packcheck=object.getInt("packcheck");
+                    String remark=object.getString("remark");
+                    goSign(qtycheck,packcheck,remark);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -100,7 +113,7 @@ public class SignActivity extends BaseActivity {
                     fragmentOne.setCustomsignview(result.getObj().get(0));
                     title.setText(result.getObj().get(0).getSignNo());
                 }else {
-                    UHelper.showToast(SignActivity.this,result.getMsg());
+                    UHelper.showToast(SignNomalActivity.this,result.getMsg());
                 }
             }
 
@@ -113,4 +126,37 @@ public class SignActivity extends BaseActivity {
     }
 
 
+    private void goSign(int packcheck, int qtycheck, final String remark){
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("packcheck", packcheck);
+        map.put("qtycheck",qtycheck);
+        map.put("remark",remark);
+        map.put("signNo",signNo);
+        map.put("fid",SessionManager.getInstance().getUser().getFid());
+        map.put("phoneNum",SessionManager.getInstance().getUser().getFiphone());
+        mDialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.SIGN_DO,map,new ResponseCallBack<SignSuccessBean>(){
+            @Override
+            public void onSuccess(SignSuccessBean result) {
+                super.onSuccess(result);
+                mDialog.dissDialog();
+
+                if (result.isSuccess()){
+                    Intent intent=new Intent();
+                    intent.setClass(SignNomalActivity.this,SignDoActivity.class);
+                    intent.putExtra("URL",result.getObj());
+                    startActivity(intent);
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                mDialog.dissDialog();
+                Log.d("错误==",ex+"");
+            }
+        });
+    }
 }

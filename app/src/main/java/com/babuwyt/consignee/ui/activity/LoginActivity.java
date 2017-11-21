@@ -99,10 +99,7 @@ public class LoginActivity extends BaseActivity {
                 if (result.isSuccess()) {
                     User user = result.getObj();
                     if (user != null) {
-                        ((ClientApp) getApplication()).saveLoginUser(user);
-                        intent.setClass(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        isBindTel(user);
                     } else {
                         UHelper.showToast(LoginActivity.this, getString(R.string.login_error));
                     }
@@ -119,5 +116,21 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 判断是否绑定了手机号
+     */
+    private void isBindTel(User user){
+        ((ClientApp) getApplication()).saveLoginUser(user);
+        if (TextUtils.isEmpty(user.getFiphone())){
+            intent.setClass(LoginActivity.this,BindTelActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            intent.setClass(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
 
 }

@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity
     private int pageNum = 1;//分页
     private ArrayList<ComNumEntity> entities;
     private ArrayList<String> compactList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,7 +163,7 @@ public class MainActivity extends BaseActivity
         });
     }
 
-//    @Event(value = {R.id.tv_qianshou})
+    //    @Event(value = {R.id.tv_qianshou})
 //    private void getE(View v) {
 //        switch (v.getId()) {
 //            case R.id.tv_qianshou:
@@ -171,7 +172,7 @@ public class MainActivity extends BaseActivity
 //        }
 //    }
     //检查拍照权限，动态设置
-    private void isCamera(){
+    private void isCamera() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -180,15 +181,16 @@ public class MainActivity extends BaseActivity
                     new String[]{Manifest.permission.CAMERA},
                     Constants.MY_PERMISSIONS_REQUEST_CAMERA);
         } else {
-            startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
+            startActivity(new Intent(MainActivity.this, RQCodeActivity.class));
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         if (requestCode == Constants.MY_PERMISSIONS_REQUEST_CAMERA) {
-            if (grantResults.length<=0 || grantResults[0]!= PackageManager.PERMISSION_GRANTED) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("您没有授权成功，无法使用相机进行拍照功能，请前往设置授权！");
                 builder.setTitle("授权失败");
                 builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
@@ -200,14 +202,14 @@ public class MainActivity extends BaseActivity
                 builder.setNegativeButton("好", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent =  new Intent(Settings.ACTION_SETTINGS);
+                        Intent intent = new Intent(Settings.ACTION_SETTINGS);
                         startActivity(intent);
                     }
                 });
                 builder.setCancelable(false);
                 builder.create().show();
             } else {
-                startActivity(new Intent(MainActivity.this,RQCodeActivity.class));
+                startActivity(new Intent(MainActivity.this, RQCodeActivity.class));
             }
             return;
         }
@@ -263,16 +265,18 @@ public class MainActivity extends BaseActivity
             @Override
             public void CallBack(ArrayList<String> list) {
                 dialog.dismiss();
-                compactList=list;
+                compactList = list;
                 getOrder();
             }
         });
     }
-    private void setAlias(){
-        TagAliasOperatorHelper.TagAliasBean tagAliasBean= new TagAliasOperatorHelper.TagAliasBean();
+
+    private void setAlias() {
+        TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
 //        TagAliasOperatorHelper.TagAliasBean.
 //        TagAliasOperatorHelper.getInstance().handleAction(this,1,);
     }
+
     /**
      * 极光推送
      */
@@ -326,7 +330,7 @@ public class MainActivity extends BaseActivity
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum", pageNum);
-        map.put("compactList",compactList);
+        map.put("compactList", compactList);
         mDialog.showDialog();
         XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
             @Override
@@ -357,7 +361,7 @@ public class MainActivity extends BaseActivity
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum", pageNum);
-        map.put("compactList",compactList);
+        map.put("compactList", compactList);
         mDialog.showDialog();
         XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
             @Override
@@ -518,6 +522,7 @@ public class MainActivity extends BaseActivity
     private DisplayMetrics dm;
     private int lastX, lastY;
     long starttime = 0;
+
     private void setLister() {
         dm = getResources().getDisplayMetrics();
         final int screenWidth = dm.widthPixels;
@@ -530,10 +535,10 @@ public class MainActivity extends BaseActivity
         int ea = motionEvent.getAction();
         final int screenWidth = dm.widthPixels;
         final int screenHeight = dm.heightPixels;
-        int l=0;
-        int b=0;
-        int r=0;
-        int t=0;
+        int l = 0;
+        int b = 0;
+        int r = 0;
+        int t = 0;
 
         switch (v.getId()) {
 
@@ -576,8 +581,8 @@ public class MainActivity extends BaseActivity
                         v.postInvalidate();
                         break;
                     case MotionEvent.ACTION_UP:
-                        long endtime=System.currentTimeMillis();
-                        if (endtime- starttime<200){
+                        long endtime = System.currentTimeMillis();
+                        if (endtime - starttime < 200) {
                             isCamera();
                         }
                         break;
@@ -588,6 +593,7 @@ public class MainActivity extends BaseActivity
         }
         return true;
     }
+
     /**
      * 点击两次退出应用
      * 通过记录按键时间计算时间差实现
