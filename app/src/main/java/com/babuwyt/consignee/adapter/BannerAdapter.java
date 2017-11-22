@@ -23,24 +23,29 @@ public class BannerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        if (viewList.size() > cacheCount){
-            container.removeView(viewList.get(position%size));
-        }
+//        if (viewList.size() > cacheCount){
+//            container.removeView(viewList.get(position%size));
+//        }
+        container.removeView(viewList.get(position));
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ViewGroup parent = (ViewGroup) viewList.get(position%size).getParent();
-        if (parent != null) {
-            parent.removeView(viewList.get(position%size));
-        }
-        container.addView(viewList.get(position%size));
-        return viewList.get(position%size);
+//        ViewGroup parent = (ViewGroup) viewList.get(position%size).getParent();
+//        if (parent != null) {
+//            parent.removeView(viewList.get(position%size));
+//        }
+//        container.addView(viewList.get(position%size));
+//        return viewList.get(position%size);
+        container.addView(viewList.get(position));
+
+        return viewList.get(position);
     }
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
+//        return Integer.MAX_VALUE;
+        return viewList.size();
     }
 
     @Override

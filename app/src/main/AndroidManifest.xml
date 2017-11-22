@@ -89,10 +89,7 @@
             android:name=".ui.activity.SignDetailsMoreActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.RQCodeActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.ServiceActivity"
             android:launchMode="singleTop"

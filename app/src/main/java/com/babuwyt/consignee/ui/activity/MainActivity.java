@@ -60,15 +60,12 @@ import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import cn.jpush.android.api.JPushInterface;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
@@ -183,6 +180,7 @@ public class MainActivity extends BaseActivity
                     Constants.MY_PERMISSIONS_REQUEST_CAMERA);
         } else {
             startActivity(new Intent(MainActivity.this, CaptureActivity.class));
+            overridePendingTransition(R.anim.scale_jump_enter,R.anim.alpha_jump_exit);
         }
     }
 
@@ -210,7 +208,8 @@ public class MainActivity extends BaseActivity
                 builder.setCancelable(false);
                 builder.create().show();
             } else {
-                startActivity(new Intent(MainActivity.this, RQCodeActivity.class));
+                startActivity(new Intent(MainActivity.this, CaptureActivity.class));
+                overridePendingTransition(R.anim.scale_jump_enter,R.anim.alpha_jump_exit);
             }
             return;
         }
@@ -585,6 +584,13 @@ public class MainActivity extends BaseActivity
                         long endtime = System.currentTimeMillis();
                         if (endtime - starttime < 200) {
                             isCamera();
+                        }else {
+                            RelativeLayout.LayoutParams lpFeedback = new RelativeLayout.LayoutParams(
+                                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                            lpFeedback.leftMargin = v.getLeft();
+                            lpFeedback.topMargin = v.getTop();
+                            lpFeedback.setMargins(v.getLeft(), v.getTop(), 0, 0);
+                            v.setLayoutParams(lpFeedback);
                         }
                         break;
                     default:

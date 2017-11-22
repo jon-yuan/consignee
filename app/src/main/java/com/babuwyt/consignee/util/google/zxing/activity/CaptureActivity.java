@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -23,14 +22,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.base.BaseActivity;
-import com.babuwyt.consignee.bean.login.User;
 import com.babuwyt.consignee.ui.activity.ReceiptListActivity;
-import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.google.zxing.camera.CameraManager;
 import com.babuwyt.consignee.util.google.zxing.decoding.CaptureActivityHandler;
 import com.babuwyt.consignee.util.google.zxing.decoding.InactivityTimer;
@@ -382,4 +378,9 @@ public class CaptureActivity extends BaseActivity implements Callback {
         }
     };
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.alpha_jump_enter,R.anim.scale_jump_exit);
+    }
 }
