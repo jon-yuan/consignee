@@ -17,4 +17,11 @@
     <color name="default_blue_55">#55004D9F</color>
     <color name="default_yellow">#ED8101</color>
     <color name="default_yellow_55">#55ED8101</color>
+
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#00000000</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
 </resources>

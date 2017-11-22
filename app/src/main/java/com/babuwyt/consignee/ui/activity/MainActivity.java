@@ -46,6 +46,7 @@ import com.babuwyt.consignee.bean.version.VersionEntity;
 import com.babuwyt.consignee.finals.BaseURL;
 import com.babuwyt.consignee.finals.Constants;
 import com.babuwyt.consignee.util.UHelper;
+import com.babuwyt.consignee.util.google.zxing.activity.CaptureActivity;
 import com.babuwyt.consignee.util.jpush.LocalBroadcastManager;
 import com.babuwyt.consignee.util.jpush.TagAliasOperatorHelper;
 import com.babuwyt.consignee.util.jpush.Util;
@@ -181,7 +182,7 @@ public class MainActivity extends BaseActivity
                     new String[]{Manifest.permission.CAMERA},
                     Constants.MY_PERMISSIONS_REQUEST_CAMERA);
         } else {
-            startActivity(new Intent(MainActivity.this, RQCodeActivity.class));
+            startActivity(new Intent(MainActivity.this, CaptureActivity.class));
         }
     }
 
