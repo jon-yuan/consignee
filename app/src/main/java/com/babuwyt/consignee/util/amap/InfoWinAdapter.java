@@ -29,6 +29,8 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
     private TextView TVaddress;
     private String mName;
     private String mAddress;
+    private TextView carno;
+    private TextView time;
 
     public InfoWinAdapter(Context context) {
         mContext = context;
@@ -45,8 +47,14 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
         View view = initView();
         TVname = view.findViewById(R.id.name);
         TVaddress = view.findViewById(R.id.address);
+        carno = view.findViewById(R.id.carno);
+        time = view.findViewById(R.id.time);
+
+
         TVname.setText(res.getName());
         TVaddress.setText(res.getAddress());
+        carno.setText(res.getDrivecard());
+        time.setText(res.getUtc());
         initData(marker);
         return view;
     }

@@ -98,10 +98,10 @@ public class LocusActivity extends BaseActivity {
         ArrayList<MarkerOptions> markerOptions = new ArrayList<MarkerOptions>();
 
         markerOptions.add(mapUtil.setMarker(latLngs.get(0), R.drawable.marker_start, false));
-        markerOptions.add(mapUtil.setMarker(latLngs.get(latLngs.size() - 1), R.drawable.marker_end, false));
+        markerOptions.add(mapUtil.setMarker(latLngs.get(latLngs.size() - 1), R.drawable.icon_blue_car, false));
         mapUtil.addMarkers(markerOptions);
         mapUtil.setPolyline(latLngs);
-        mapUtil.setMapwithBounds(latLngs, 5);
+        mapUtil.setMapwithBounds(latLngs, 20);
 
     }
 

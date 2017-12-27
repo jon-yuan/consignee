@@ -12,9 +12,9 @@ public class BaseURL {
     /**
      * 请求地址
      */
-//    public static final String BASE_URL = "http://www.babuwyt.com:8080/tmsapi//";//测试服务器地址
+    public static final String BASE_URL = "http://www.babuwyt.com:8080/tmsapi/";//测试服务器地址
 //    public static final String BASE_URL = "http://123.206.75.242:8090/tmsapi/";//测试服务器地址
-    public static final String BASE_URL = "http://192.168.2.224:8080/tmsapi/";//张瑞宝主机
+//    public static final String BASE_URL = "http://192.168.2.224:8080/tmsapi/";//张瑞宝主机
 //    public static final String BASE_URL = "http://192.168.2.17:8080/api/";//我的主机
 //    public static final String BASE_URL = "http://119.29.230.77:8090/tmsapi/";//正式服务器地址
 //    private static final String BASE_URL = "http://192.168.2.71:8090/";
@@ -50,7 +50,7 @@ public class BaseURL {
     /**
      * 获取当前位置
      */
-    public static final String PLGET_LOCATION=BASE_URL+"CLtrucklocation/PLgetlocation/sendcarid";
+    public static final String PLGET_LOCATION=BASE_URL+"operationApp/getLocationBySendCarOrder";
     /**
      * 获取轨迹路线
      */
@@ -84,6 +84,10 @@ public class BaseURL {
      * 签收单签收确认
      */
     public static final String SIGN_DO=BASE_URL+"AppConsignee/consigneeEleSign";
+    /**
+     * 订单详情
+     */
+    public static final String ORDER_DETAILS=BASE_URL+"AppConsignee/orderDetailss";
     /**
      * 检测版本
      *

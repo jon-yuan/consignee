@@ -3,6 +3,7 @@ package com.babuwyt.consignee.util.jpush;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class TestActivity extends Activity {
             }
             tv.setText("Title : " + title + "  " + "Content : " + content);
         }
+        Log.d("","打开了APPTEST");
         addContentView(tv, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
     }
 

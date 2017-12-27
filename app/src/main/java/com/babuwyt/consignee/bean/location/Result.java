@@ -11,6 +11,8 @@ import org.xutils.http.annotation.HttpResponse;
 public class Result {
     private String name;
     private String address;
+    private String drivecard;
+    private String utc;
     private LocusEntity gps;
 
     public String getName() {
@@ -37,6 +39,21 @@ public class Result {
         this.gps = gps;
     }
 
+    public String getDrivecard() {
+        return drivecard;
+    }
+
+    public void setDrivecard(String drivecard) {
+        this.drivecard = drivecard;
+    }
+
+    public String getUtc() {
+        return utc;
+    }
+
+    public void setUtc(String utc) {
+        this.utc = utc;
+    }
     /**
      *
      * {"name":"张三李四","address":"港务区XXXXX","gps":{"wgLon":130.0000,"wgLat":31.0000}}

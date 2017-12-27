@@ -40,6 +40,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:gravity="top">
             <TextView
                 android:layout_width="wrap_content"
@@ -284,7 +285,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 android:text="@string/weizhi"
                 android:textColor="@color/black_333"
                 android:layout_marginLeft="5dp"
@@ -309,7 +309,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 android:text="@string/xingshiguiji"
                 android:textColor="@color/black_333"
                 android:layout_marginLeft="5dp"
@@ -334,7 +333,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 android:textColor="@color/black_333"
                 android:text="@string/zhuangtaigenzong"
                 android:layout_marginLeft="5dp"

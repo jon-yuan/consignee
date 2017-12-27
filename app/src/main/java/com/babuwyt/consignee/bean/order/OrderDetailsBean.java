@@ -5,20 +5,18 @@ import com.babuwyt.consignee.util.request.JsonResponseParser;
 
 import org.xutils.http.annotation.HttpResponse;
 
-import java.util.ArrayList;
-
 /**
- * Created by lenovo on 2017/11/8.
+ * Created by bbkj on 2017/12/6.
  */
 @HttpResponse(parser = JsonResponseParser.class)
-public class OrderBean extends BaseBean {
-    private ArrayList<OrderEntity> obj;
+public class OrderDetailsBean extends BaseBean {
+    private OrderDetailsEntity obj;
 
-    public ArrayList<OrderEntity> getObj() {
+    public OrderDetailsEntity getObj() {
         return obj;
     }
 
-    public void setObj(ArrayList<OrderEntity> obj) {
+    public void setObj(OrderDetailsEntity obj) {
         this.obj = obj;
     }
 }

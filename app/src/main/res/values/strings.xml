@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">收货人</string>
+    <string name="app_name">万运通收货人版</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -102,4 +102,23 @@
     <string name="dencode_qrcode">扫描二维码</string>
     <string name="code_text">请输入生成二维码的文本信息</string>
     <string name="qrcodetext">这里显示扫描结果</string>
+    <string name="yundanhao">运单号</string>
+    <string name="state">订单状态</string>
+    <string name="orderdeails">订单详情</string>
+    <string name="tihuo">提货</string>
+    <string name="xiehuo">卸货</string>
+    <string name="shiji_tihuo_time">实际提货时间</string>
+    <string name="huowu">货物</string>
+    <string name="yundan_state">运单状态</string>
+    <string name="zhuanghuo_pic">装货照片</string>
+    <string name="qianshou_pic">签收照片</string>
+    <string name="baozhuangleixing">包装类型</string>
+    <string name="jianshu">件数</string>
+    <string name="zhongliang">重量（KG）</string>
+    <string name="tiji">体积（m³）</string>
+    <string name="jiazhi">价值（元）</string>
+    <string name="ok">好</string>
+    <string name="call_quanxian">没有授权拨打电话权限，请前往设置。</string>
+    <string name="has_no_data">没有查到数据</string>
+    <string name="loctiontime">定位时间:</string>
 </resources>

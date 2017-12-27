@@ -69,19 +69,13 @@ public class StateFollowAdapter extends BaseAdapter {
         holder.tv_addrss.setText(mList.get(i).getFromto()+": "+mList.get(i).getSsq()+mList.get(i).getFaddress());
         holder.tv_state.setText(mList.get(i).getTypetemp());
         if (TextUtils.isEmpty(mList.get(i).getChecktims())){
-            holder.tv_time.setTextColor(context.getResources().getColor(R.color.black_666));
-            holder.tv_addrss.setTextColor(context.getResources().getColor(R.color.black_666));
-            holder.tv_state.setTextColor(context.getResources().getColor(R.color.black_666));
-            holder.v_1.setTextColor(context.getResources().getColor(R.color.black_666));
             holder.tv_state.setVisibility(View.GONE);
             holder.img_state.setVisibility(View.VISIBLE);
+            holder.v_1.setEnabled(false);
         }else {
-            holder.tv_time.setTextColor(context.getResources().getColor(R.color.btn_blue));
-            holder.tv_addrss.setTextColor(context.getResources().getColor(R.color.btn_blue));
-            holder.tv_state.setTextColor(context.getResources().getColor(R.color.btn_blue));
-            holder.v_1.setTextColor(context.getResources().getColor(R.color.btn_blue));
             holder.tv_state.setVisibility(View.VISIBLE);
             holder.img_state.setVisibility(View.GONE);
+            holder.v_1.setEnabled(true);
         }
 
 

@@ -107,7 +107,7 @@ public class MapUtil implements AMapLocationListener{
     public void setPolyline(ArrayList<LatLng> latLngs) {
         mAMap.addPolyline((new PolylineOptions())
                 .addAll(latLngs)
-                .width(5).color(Color.argb(255, 80, 132, 250)));
+                .width(5).color(Color.argb(255, 255, 64, 129)));
     }
 
     /**

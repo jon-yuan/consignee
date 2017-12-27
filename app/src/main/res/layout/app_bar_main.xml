@@ -53,6 +53,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="@string/qianshou"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="16sp"

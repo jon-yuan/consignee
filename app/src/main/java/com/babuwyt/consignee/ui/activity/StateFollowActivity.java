@@ -1,17 +1,31 @@
 package com.babuwyt.consignee.ui.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.StateFollowAdapter;
 import com.babuwyt.consignee.base.BaseActivity;
+import com.babuwyt.consignee.base.ClientApp;
 import com.babuwyt.consignee.bean.order.Driver;
 import com.babuwyt.consignee.bean.order.StateFollowBean;
 import com.babuwyt.consignee.bean.order.StatefollowEntity;
@@ -19,11 +33,18 @@ import com.babuwyt.consignee.finals.BaseURL;
 import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
+import com.babuwyt.consignee.views.dialog.PromptDialog;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lenovo on 2017/8/24.
@@ -39,6 +60,8 @@ public class StateFollowActivity extends BaseActivity {
     TextView tv_state;
     TextView tv_siji;
     TextView tv_dianhua;
+    ImageView image_callphone;
+    LinearLayout layout_driver;
     private TextView tv_wancheng;
     private ArrayList<StatefollowEntity> mList;
     private StateFollowAdapter mAdapter;
@@ -55,8 +78,6 @@ public class StateFollowActivity extends BaseActivity {
     }
 
     private void init() {
-
-        toolbar.setTitle(getString(R.string.zhuangtaigenzong));
         toolbar.setNavigationIcon(R.drawable.icon_back_black);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +99,15 @@ public class StateFollowActivity extends BaseActivity {
         tv_state=header.findViewById(R.id.tv_state);
         tv_siji=header.findViewById(R.id.tv_siji);
         tv_dianhua=header.findViewById(R.id.tv_dianhua);
+        image_callphone=header.findViewById(R.id.image_callphone);
+        layout_driver=header.findViewById(R.id.layout_driver);
+
+        image_callphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c();
+            }
+        });
         return header;
     }
     private View footer(){
@@ -121,6 +151,85 @@ public class StateFollowActivity extends BaseActivity {
         tv_siji.setText("司机："+mdriver.getDrivername()+"  车牌号："+mdriver.getFplateno());
         tv_state.setText("已派车");
         tv_wancheng.setEnabled(state);
+        if (mdriver==null || TextUtils.isEmpty(mdriver.getDrivername())){
+            layout_driver.setVisibility(View.GONE);
+        }else {
+            layout_driver.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+
+    private void c(){
+        AndPermission.with(this)
+                .requestCode(100)
+                .permission(Manifest.permission.CALL_PHONE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        AndPermission.rationaleDialog(StateFollowActivity.this, rationale).show();
+                    }
+                })
+                .callback(listener)
+                .start();
+    }
+
+    private PermissionListener listener = new PermissionListener() {
+        @Override
+        public void onSucceed(int requestCode, List<String> grantedPermissions) {
+            // Successfully.
+            if (requestCode == 100) {
+                // TODO ...
+                call();
+            }
+        }
+
+        @SuppressLint("NewApi")
+        @Override
+        public void onFailed(int requestCode, List<String> deniedPermissions) {
+            // Failure.
+            if (requestCode == 100) {
+                // TODO ...
+                PromptDialog dialog = new PromptDialog(StateFollowActivity.this);
+                dialog.setTitle(getString(R.string.prompt));
+                dialog.setMsg(getString(R.string.call_quanxian));
+                dialog.setCanceledTouchOutside(true);
+                dialog.setOnClick1(getString(R.string.cancal), new PromptDialog.Btn1OnClick() {
+                    @Override
+                    public void onClick() {
+
+
+                    }
+                });
+                dialog.setOnClick2(getString(R.string.ok), new PromptDialog.Btn2OnClick() {
+                    @Override
+                    public void onClick() {
+                        Intent intent = new Intent(Settings.ACTION_SETTINGS);
+                        startActivityForResult(intent, 0);
+                    }
+                });
+                dialog.create();
+                dialog.showDialog();
+
+            }
+        }
+    };
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            call();
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void call(){
+        if (mdriver==null){
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + mdriver.getFtel()));
+        startActivity(intent);
     }
 
 }

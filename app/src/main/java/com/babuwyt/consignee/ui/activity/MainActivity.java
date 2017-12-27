@@ -108,8 +108,8 @@ public class MainActivity extends BaseActivity
     @SuppressLint("ResourceAsColor")
     private void init() {
         nav_view.setNavigationItemSelectedListener(this);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+//        toolbar.setTitle("");
+//        setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,18 +118,18 @@ public class MainActivity extends BaseActivity
                 }
             }
         });
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_shaixuan:
-//                        UHelper.showToast(MainActivity.this,"筛选");
-                        showShaixuan();
-                        break;
-                }
-                return true;
-            }
-        });
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.action_shaixuan:
+////                        UHelper.showToast(MainActivity.this,"筛选");
+//                        showShaixuan();
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
         springview.setHeader(new DefaultHeader(this));
         springview.setFooter(new DefaultFooter(this));
         springview.setListener(new SpringView.OnFreshListener() {
@@ -154,11 +154,15 @@ public class MainActivity extends BaseActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SignDetailsMoreActivity.class);
+                intent.setClass(MainActivity.this, OrderDetailsActivity.class);
                 intent.putExtra("orderId", mList.get(i).getOrderId());
                 startActivity(intent);
             }
         });
+
+        View headerLayout = nav_view.getHeaderView(0);
+        TextView textView=headerLayout.findViewById(R.id.username);
+        textView.setText(SessionManager.getInstance().getUser().getFiphone());
     }
 
     //    @Event(value = {R.id.tv_qianshou})
@@ -228,7 +232,7 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -330,17 +334,18 @@ public class MainActivity extends BaseActivity
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum", pageNum);
-        map.put("compactList", compactList);
+//        map.put("compactList", compactList);
         mDialog.showDialog();
         XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
             @Override
             public void onSuccess(OrderBean result) {
                 super.onSuccess(result);
+                Log.d("=====shuju=====",new Gson().toJson(result));
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
                 if (result.isSuccess()) {
                     mList.clear();
-                    mList.addAll(result.getObj().getOrderDetails() == null ? new ArrayList<OrderEntity>() : result.getObj().getOrderDetails());
+                    mList.addAll(result.getObj());
                     mAdapter.notifyDataSetChanged();
                 } else {
                     UHelper.showToast(MainActivity.this, result.getMsg());
@@ -350,6 +355,7 @@ public class MainActivity extends BaseActivity
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 super.onError(ex, isOnCallback);
+                Log.d("=====shuju=====",ex+"");
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
             }
@@ -370,7 +376,7 @@ public class MainActivity extends BaseActivity
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
                 if (result.isSuccess()) {
-                    mList.addAll(result.getObj().getOrderDetails() == null ? new ArrayList<OrderEntity>() : result.getObj().getOrderDetails());
+                    mList.addAll(result.getObj());
                     mAdapter.notifyDataSetChanged();
                 } else {
                     UHelper.showToast(MainActivity.this, result.getMsg());

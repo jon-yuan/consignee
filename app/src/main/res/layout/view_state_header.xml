@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/layout_driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -55,22 +56,41 @@
                     android:textColor="@color/black_666"
                     android:textSize="14sp" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_siji"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_666"
-                android:textSize="12sp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:id="@+id/tv_dianhua"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black_666"
-                android:textSize="12sp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="5dp"/>
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_siji"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_666"
+                        android:textSize="12sp"
+
+                        android:layout_marginTop="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_dianhua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_666"
+                        android:textSize="12sp"
+                        android:layout_marginTop="5dp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/image_callphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/icon_callphone"/>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

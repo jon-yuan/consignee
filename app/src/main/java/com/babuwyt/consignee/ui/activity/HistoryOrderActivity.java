@@ -72,24 +72,24 @@ public class HistoryOrderActivity extends BaseActivity{
 
     private void init() {
         toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_search:
-                        startActivity(new Intent(HistoryOrderActivity.this,SearchActivity.class));
-                        break;
-                }
-                return true;
-            }
-        });
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()){
+//                    case R.id.action_search:
+//                        startActivity(new Intent(HistoryOrderActivity.this,SearchActivity.class));
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
         mAdapter=new HistoryAdapter(this,tv_ordernum);
         mList=new ArrayList<HistoryOrderEntity>();
 
@@ -99,7 +99,7 @@ public class HistoryOrderActivity extends BaseActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
-                intent.setClass(HistoryOrderActivity.this,SignDetailsMoreActivity.class);
+                intent.setClass(HistoryOrderActivity.this,OrderDetailsActivity.class);
                 intent.putExtra("orderId",mList.get(i).getOrderId());
                 startActivity(intent);
             }
@@ -121,7 +121,7 @@ public class HistoryOrderActivity extends BaseActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.history_order, menu);
+//        getMenuInflater().inflate(R.menu.history_order, menu);
         return true;
     }
 
@@ -156,6 +156,8 @@ public class HistoryOrderActivity extends BaseActivity{
                     mList.clear();
                     mList.addAll(result.getObj());
                     mAdapter.notifyDataSetChanged();
+                }else {
+                    UHelper.showToast(HistoryOrderActivity.this,result.getMsg());
                 }
             }
 
@@ -183,6 +185,8 @@ public class HistoryOrderActivity extends BaseActivity{
                 if (result.isSuccess()){
                     mList.addAll(result.getObj());
                     mAdapter.notifyDataSetChanged();
+                }else {
+                    UHelper.showToast(HistoryOrderActivity.this,result.getMsg());
                 }
             }
 

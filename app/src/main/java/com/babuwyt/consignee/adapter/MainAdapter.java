@@ -67,39 +67,39 @@ public class MainAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.tv_dervernum.setText(mList.get(i).getDriverOrderNumber());
+        holder.tv_dervernum.setText(mList.get(i).getOrderNumber());
         holder.tv_cartype.setText(mList.get(i).getCarType());
-        holder.tv_huozhu.setText(mList.get(i).getShiperName()+"...");
-        holder.tv_product.setText(mList.get(i).getGoodsName()+"...");
-        ArrayList<SignNoEntity> list = mList.get(i).getSignList();
-        holder.tv_no3.setVisibility(View.GONE);
-        holder.tv_no4.setVisibility(View.GONE);
-        switch (list.size()) {
-            case 0:
-                holder.tv_no1.setText("");
-                break;
-            case 1:
-                holder.tv_no1.setText(list.get(0).getSignNo());
-                break;
-            case 2:
-                holder.tv_no1.setText(list.get(0).getSignNo());
-                holder.tv_no2.setText(list.get(1).getSignNo());
-                break;
-            case 3:
-                holder.tv_no1.setText(list.get(0).getSignNo());
-                holder.tv_no2.setText(list.get(1).getSignNo());
-                holder.tv_no3.setText(list.get(2).getSignNo());
-                holder.tv_no3.setVisibility(View.VISIBLE);
-                break;
-            default:
-                holder.tv_no1.setText(list.get(0).getSignNo());
-                holder.tv_no2.setText(list.get(1).getSignNo());
-                holder.tv_no3.setText(list.get(2).getSignNo());
-                holder.tv_no4.setText("...");
-                holder.tv_no3.setVisibility(View.VISIBLE);
-                holder.tv_no4.setVisibility(View.VISIBLE);
-                break;
-        }
+        holder.tv_huozhu.setText(mList.get(i).getShiperName());
+        holder.tv_product.setText(mList.get(i).getGoodsName());
+//        ArrayList<SignNoEntity> list = mList.get(i).getSignList();
+//        holder.tv_no3.setVisibility(View.GONE);
+//        holder.tv_no4.setVisibility(View.GONE);
+//        switch (list.size()) {
+//            case 0:
+//                holder.tv_no1.setText("");
+//                break;
+//            case 1:
+//                holder.tv_no1.setText(list.get(0).getSignNo());
+//                break;
+//            case 2:
+//                holder.tv_no1.setText(list.get(0).getSignNo());
+//                holder.tv_no2.setText(list.get(1).getSignNo());
+//                break;
+//            case 3:
+//                holder.tv_no1.setText(list.get(0).getSignNo());
+//                holder.tv_no2.setText(list.get(1).getSignNo());
+//                holder.tv_no3.setText(list.get(2).getSignNo());
+//                holder.tv_no3.setVisibility(View.VISIBLE);
+//                break;
+//            default:
+//                holder.tv_no1.setText(list.get(0).getSignNo());
+//                holder.tv_no2.setText(list.get(1).getSignNo());
+//                holder.tv_no3.setText(list.get(2).getSignNo());
+//                holder.tv_no4.setText("...");
+//                holder.tv_no3.setVisibility(View.VISIBLE);
+//                holder.tv_no4.setVisibility(View.VISIBLE);
+//                break;
+//        }
 
         holder.layout_location.setOnClickListener(new View.OnClickListener() {
             @Override

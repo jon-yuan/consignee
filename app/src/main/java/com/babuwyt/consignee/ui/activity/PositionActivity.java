@@ -93,7 +93,7 @@ public class PositionActivity extends BaseActivity {
                 .position(latLng)
                 .title(title)
                 .snippet(snippet)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car_green))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_blue_car))
         );
     }
 
@@ -114,6 +114,8 @@ public class PositionActivity extends BaseActivity {
                     marker.setObject(res);
                     mapUtil.moveMapCenter(new LatLng(res.getGps().getWgLat(), res.getGps().getWgLon()));
                     marker.showInfoWindow();
+                }else {
+                    UHelper.showToast(PositionActivity.this,getString(R.string.has_no_data));
                 }
             }
 

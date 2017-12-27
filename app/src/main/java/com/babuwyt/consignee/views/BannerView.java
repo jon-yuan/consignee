@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+
 import com.babuwyt.consignee.R;
 import com.babuwyt.consignee.adapter.BannerAdapter;
 
@@ -112,7 +113,9 @@ public class BannerView extends FrameLayout {
             @Override
             public void onPageSelected(int position) {
 //                mViewPager.getCurrentItem();
-                lister.onChangeLister(position % viewSize);
+                if (lister!=null){
+                    lister.onChangeLister(position % viewSize);
+                }
                 updateLinearPosition();
             }
 
@@ -258,6 +261,9 @@ public class BannerView extends FrameLayout {
                 }
             });
         }
+    }
+    public void setCurrentItem(int i){
+        mViewPager.setCurrentItem(i);
     }
 
     public void setLoopInterval(long loopInterval) {
