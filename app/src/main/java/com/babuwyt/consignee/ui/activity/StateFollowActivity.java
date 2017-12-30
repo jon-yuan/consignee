@@ -59,7 +59,9 @@ public class StateFollowActivity extends BaseActivity {
     TextView tv_dingdan;
     TextView tv_state;
     TextView tv_siji;
+    TextView tv_fsiji;
     TextView tv_dianhua;
+    TextView tv_fdianhua;
     ImageView image_callphone;
     LinearLayout layout_driver;
     private TextView tv_wancheng;
@@ -98,7 +100,9 @@ public class StateFollowActivity extends BaseActivity {
         tv_dingdan=header.findViewById(R.id.tv_dingdan);
         tv_state=header.findViewById(R.id.tv_state);
         tv_siji=header.findViewById(R.id.tv_siji);
+        tv_fsiji=header.findViewById(R.id.tv_fsiji);
         tv_dianhua=header.findViewById(R.id.tv_dianhua);
+        tv_fdianhua=header.findViewById(R.id.tv_fdianhua);
         image_callphone=header.findViewById(R.id.image_callphone);
         layout_driver=header.findViewById(R.id.layout_driver);
 
@@ -146,10 +150,12 @@ public class StateFollowActivity extends BaseActivity {
         if (mdriver==null){
             return;
         }
-        tv_dingdan.setText("订单"+mdriver.getFsendcarno());
-        tv_dianhua.setText("联系电话:"+mdriver.getFtel());
-        tv_siji.setText("司机："+mdriver.getDrivername()+"  车牌号："+mdriver.getFplateno());
-        tv_state.setText("已派车");
+        tv_dingdan.setText(getString(R.string.order)+mdriver.getFsendcarno());
+        tv_dianhua.setText(getString(R.string.linkphone)+mdriver.getFtel());
+        tv_fdianhua.setText(getString(R.string.linkphone)+mdriver.getFftel());
+        tv_siji.setText(getString(R.string.zhusiji)+mdriver.getDrivername()+getString(R.string.chepaihao)+mdriver.getFplateno());
+        tv_fsiji.setText(getString(R.string.fusiji)+mdriver.getFdrivername());
+        tv_state.setText(getString(R.string.yipaiche));
         tv_wancheng.setEnabled(state);
         if (mdriver==null || TextUtils.isEmpty(mdriver.getDrivername())){
             layout_driver.setVisibility(View.GONE);

@@ -121,4 +121,9 @@
     <string name="call_quanxian">没有授权拨打电话权限，请前往设置。</string>
     <string name="has_no_data">没有查到数据</string>
     <string name="loctiontime">定位时间:</string>
+    <string name="yipaiche">已派车</string>
+    <string name="fusiji">副司机:</string>
+    <string name="zhusiji">主司机:</string>
+    <string name="order">订单:</string>
+    <string name="wu">无</string>
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.bigkoo.pickerview.TimePickerView;
+import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
@@ -147,18 +149,20 @@ public class HistoryOrderActivity extends BaseActivity{
         map.put("inputeStr","");
         map.put("startTime",startTime);
         map.put("endTime",endTime);
+        Log.d("历史订单==参数",new Gson().toJson(map));
         XUtil.PostJsonObj(BaseURL.HISTORY_ORDER,map,new ResponseCallBack<HistoryOrderBean>(){
             @Override
             public void onSuccess(HistoryOrderBean result) {
                 super.onSuccess(result);
+                Log.d("历史订单==",new Gson().toJson(result));
                 springview.onFinishFreshAndLoad();
+                mList.clear();
                 if (result.isSuccess()){
-                    mList.clear();
                     mList.addAll(result.getObj());
-                    mAdapter.notifyDataSetChanged();
                 }else {
                     UHelper.showToast(HistoryOrderActivity.this,result.getMsg());
                 }
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
