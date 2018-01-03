@@ -85,7 +85,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black_666"
                         android:textSize="12sp"
-                        android:text="@string/wu"
                         android:layout_marginTop="5dp"/>
                     <TextView
                         android:id="@+id/tv_fdianhua"
@@ -93,7 +92,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black_666"
                         android:textSize="12sp"
-                        android:text="@string/wu"
                         android:layout_marginTop="5dp"/>
                 </LinearLayout>
 

@@ -37,6 +37,15 @@ public class OrderDetailsEntity {
     private ArrayList<String> loadingPic;
     private ArrayList<String> unloadingPic;
     private ArrayList<Address> loadAddressList;
+    private ArrayList<String>  unloadPhoto;
+
+    public ArrayList<String> getUnloadPhoto() {
+        return unloadPhoto;
+    }
+
+    public void setUnloadPhoto(ArrayList<String> unloadPhoto) {
+        this.unloadPhoto = unloadPhoto;
+    }
 
     public ArrayList<String> getLoadingPic() {
         return loadingPic;

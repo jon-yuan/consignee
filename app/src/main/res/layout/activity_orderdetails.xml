@@ -63,7 +63,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="YHS448147851"
                     android:textColor="@color/black_333"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -420,12 +419,11 @@
                     android:src="@drawable/icon_next_black" />
             </LinearLayout>
 
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1px"-->
-                <!--android:layout_marginHorizontal="20dp"-->
-                <!--android:background="@color/main_gray_line" />-->
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/main_gray_line" />
             <com.babuwyt.consignee.views.CustomGridView
                 android:id="@+id/gridview"
                 android:layout_width="match_parent"
@@ -434,6 +432,51 @@
                 android:horizontalSpacing="5dp"
                 android:numColumns="4"
                 android:verticalSpacing="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_pic" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/xiehuozhappian"
+                    android:textColor="@color/black_333"
+                    android:textSize="16sp" />
+                <ImageView
+                    android:id="@+id/image_xiehuo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="centerInside"
+                    android:padding="10dp"
+                    android:visibility="invisible"
+                    android:src="@drawable/icon_next_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/main_gray_line" />
+            <com.babuwyt.consignee.views.CustomGridView
+                android:id="@+id/xiehuo_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:horizontalSpacing="10dp"
+                android:numColumns="4"
+                android:verticalSpacing="10dp" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

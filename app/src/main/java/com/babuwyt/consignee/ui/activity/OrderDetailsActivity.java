@@ -78,6 +78,17 @@ public class OrderDetailsActivity extends BaseActivity {
     @ViewInject(R.id.tv_jiazhi)
     TextView tv_jiazhi;
 
+
+    @ViewInject(R.id.xiehuo_gridview)
+    CustomGridView xiehuo_gridview;
+    @ViewInject(R.id.image_xiehuo)
+    ImageView image_xiehuo;
+
+
+    private OrderDetailsAdapter xhAdapter;
+    private ArrayList<String> xhList;
+
+
     private OrderDetailsAdapter zhAdapter;
     private OrderDetailsAdapter qsAdapter;
     private String fsendcarno;
@@ -134,6 +145,24 @@ public class OrderDetailsActivity extends BaseActivity {
                 intent.setClass(OrderDetailsActivity.this,LookBigPictureActivity.class);
                 intent.putExtra("index",i);
                 intent.putExtra("list",qsList);
+                startActivity(intent);
+            }
+        });
+
+
+        xhAdapter = new OrderDetailsAdapter(this);
+//        xhAdapter.setShow(xhShow);
+        xhList = new ArrayList<String>();
+
+        xhAdapter.setmList(xhList);
+        xiehuo_gridview.setAdapter(xhAdapter);
+        xiehuo_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent();
+                intent.setClass(OrderDetailsActivity.this,LookBigPictureActivity.class);
+                intent.putExtra("index",i);
+                intent.putExtra("list",xhList);
                 startActivity(intent);
             }
         });
@@ -210,6 +239,11 @@ public class OrderDetailsActivity extends BaseActivity {
             qsList.clear();
             qsList.addAll(b.getUnloadingPic());
             qsAdapter.notifyDataSetChanged();
+        }
+        if (xhList!=null){
+            xhList.clear();
+            xhList.addAll(b.getUnloadPhoto());
+            xhAdapter.notifyDataSetChanged();
         }
 
     }
