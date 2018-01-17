@@ -13,8 +13,9 @@ public class BaseURL {
      * 请求地址
      */
 //    public static final String BASE_URL = "http://www.babuwyt.com:8080/tmsapi/";//测试服务器地址
-    public static final String BASE_URL = "http://123.206.75.242:8090/tmsapi/";//测试服务器地址
-//    public static final String BASE_URL = "http://192.168.2.41:8080/tmsapi/";//测试服务器地址
+//    public static final String BASE_URL = "http://192.168.2.142:8080/tmsapi/";//测试服务器地址
+//    public static final String BASE_URL = "http://123.206.75.242:8090/tmsapi/";//测试服务器地址
+    public static final String BASE_URL = "http://192.168.2.41:8080/tmsapi/";//测试服务器地址
 //    public static final String BASE_URL = "http://192.168.2.92:8080/tmsapi/";//张瑞宝主机
 //    public static final String BASE_URL = "http://192.168.2.17:8080/api/";//我的主机
 //    public static final String BASE_URL = "http://119.29.230.77:8090/tmsapi/";//正式服务器地址

@@ -20,6 +20,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,7 +30,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +66,7 @@ import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
@@ -70,10 +77,10 @@ import java.util.Map;
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnTouchListener {
-    @ViewInject(R.id.toolbar)
-    Toolbar toolbar;
     @ViewInject(R.id.springview)
     SpringView springview;
+    @ViewInject(R.id.image_user)
+    ImageView image_user;
     @ViewInject(R.id.drawer_layout)
     DrawerLayout drawer;
     @ViewInject(R.id.nav_view)
@@ -84,11 +91,16 @@ public class MainActivity extends BaseActivity
     RelativeLayout layout_relative;
     @ViewInject(R.id.tv_qianshou)
     TextView tv_qianshou;
+    @ViewInject(R.id.et_input)
+    EditText et_input;
+    @ViewInject(R.id.img_x)
+    ImageView img_x;
     private ArrayList<OrderEntity> mList;
     private MainAdapter mAdapter;
     private int pageNum = 1;//分页
     private ArrayList<ComNumEntity> entities;
     private ArrayList<String> compactList;
+    private String searchstr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +122,7 @@ public class MainActivity extends BaseActivity
         nav_view.setNavigationItemSelectedListener(this);
 //        toolbar.setTitle("");
 //        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        image_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!drawer.isDrawerOpen(GravityCompat.START)) {
@@ -123,7 +135,7 @@ public class MainActivity extends BaseActivity
 //            public boolean onMenuItemClick(MenuItem item) {
 //                switch (item.getItemId()) {
 //                    case R.id.action_shaixuan:
-////                        UHelper.showToast(MainActivity.this,"筛选");
+//                        UHelper.showToast(MainActivity.this,"筛选");
 //                        showShaixuan();
 //                        break;
 //                }
@@ -141,7 +153,6 @@ public class MainActivity extends BaseActivity
             @Override
             public void onLoadmore() {
                 getOrderMore();
-                springview.onFinishFreshAndLoad();
             }
         });
         compactList = new ArrayList<String>();
@@ -161,18 +172,58 @@ public class MainActivity extends BaseActivity
         });
 
         View headerLayout = nav_view.getHeaderView(0);
-        TextView textView=headerLayout.findViewById(R.id.username);
+        TextView textView = headerLayout.findViewById(R.id.username);
         textView.setText(SessionManager.getInstance().getUser().getFiphone());
+
+
+        et_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if (!TextUtils.isEmpty(searchstr)) {
+                        getOrderSearch();
+                    } else {
+                        UHelper.showToast(MainActivity.this, getString(R.string.please_input_numbuter));
+                    }
+
+                }
+                return false;
+            }
+        });
+        et_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                searchstr = charSequence.toString();
+                if (charSequence.length() <= 0) {
+                    img_x.setVisibility(View.GONE);
+                    getOrder();
+                } else {
+                    img_x.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
-    //    @Event(value = {R.id.tv_qianshou})
-//    private void getE(View v) {
-//        switch (v.getId()) {
-//            case R.id.tv_qianshou:
-////                isCamera();
-//                break;
-//        }
-//    }
+    @Event(value = {R.id.img_x})
+    private void getE(View v) {
+        switch (v.getId()) {
+            case R.id.img_x:
+                et_input.setText("");
+                break;
+        }
+    }
+
     //检查拍照权限，动态设置
     private void isCamera() {
         if (ContextCompat.checkSelfPermission(this,
@@ -184,7 +235,7 @@ public class MainActivity extends BaseActivity
                     Constants.MY_PERMISSIONS_REQUEST_CAMERA);
         } else {
             startActivity(new Intent(MainActivity.this, CaptureActivity.class));
-            overridePendingTransition(R.anim.scale_jump_enter,R.anim.alpha_jump_exit);
+            overridePendingTransition(R.anim.scale_jump_enter, R.anim.alpha_jump_exit);
         }
     }
 
@@ -213,7 +264,7 @@ public class MainActivity extends BaseActivity
                 builder.create().show();
             } else {
                 startActivity(new Intent(MainActivity.this, CaptureActivity.class));
-                overridePendingTransition(R.anim.scale_jump_enter,R.anim.alpha_jump_exit);
+                overridePendingTransition(R.anim.scale_jump_enter, R.anim.alpha_jump_exit);
             }
             return;
         }
@@ -329,18 +380,51 @@ public class MainActivity extends BaseActivity
      * 获取订单
      */
 
-    private void getOrder() {
+    private void getOrderSearch() {
         pageNum = 1;
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum", pageNum);
+        map.put("inputeStr", searchstr);
 //        map.put("compactList", compactList);
         mDialog.showDialog();
         XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
             @Override
             public void onSuccess(OrderBean result) {
                 super.onSuccess(result);
-                Log.d("=====shuju=====",new Gson().toJson(result));
+
+                mList.clear();
+                if (result.isSuccess()) {
+                    mList.addAll(result.getObj());
+                } else {
+                    UHelper.showToast(MainActivity.this, result.getMsg());
+                }
+                mAdapter.notifyDataSetChanged();
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                super.onError(ex, isOnCallback);
+                mDialog.dissDialog();
+                springview.onFinishFreshAndLoad();
+            }
+        });
+    }
+
+    private void getOrder() {
+        pageNum = 1;
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("fid", SessionManager.getInstance().getUser().getFid());
+        map.put("pageNum", pageNum);
+        map.put("inputeStr", searchstr);
+//        map.put("compactList", compactList);
+        mDialog.showDialog();
+        XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
+            @Override
+            public void onSuccess(OrderBean result) {
+                super.onSuccess(result);
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
                 if (result.isSuccess()) {
@@ -355,7 +439,6 @@ public class MainActivity extends BaseActivity
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 super.onError(ex, isOnCallback);
-                Log.d("=====shuju=====",ex+"");
                 mDialog.dissDialog();
                 springview.onFinishFreshAndLoad();
             }
@@ -367,7 +450,8 @@ public class MainActivity extends BaseActivity
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("fid", SessionManager.getInstance().getUser().getFid());
         map.put("pageNum", pageNum);
-        map.put("compactList", compactList);
+        map.put("inputeStr", searchstr);
+//        map.put("compactList", compactList);
         mDialog.showDialog();
         XUtil.PostJsonObj(BaseURL.GETORDERSHOW, map, new ResponseCallBack<OrderBean>() {
             @Override
@@ -590,7 +674,7 @@ public class MainActivity extends BaseActivity
                         long endtime = System.currentTimeMillis();
                         if (endtime - starttime < 200) {
                             isCamera();
-                        }else {
+                        } else {
                             RelativeLayout.LayoutParams lpFeedback = new RelativeLayout.LayoutParams(
                                     RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                             lpFeedback.leftMargin = v.getLeft();

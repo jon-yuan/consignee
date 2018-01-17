@@ -121,15 +121,18 @@ public class LoginActivity extends BaseActivity {
      */
     private void isBindTel(User user){
         ((ClientApp) getApplication()).saveLoginUser(user);
-        if (TextUtils.isEmpty(user.getFiphone())){
-            intent.setClass(LoginActivity.this,BindTelActivity.class);
-            startActivity(intent);
-            finish();
-        }else {
-            intent.setClass(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        if (TextUtils.isEmpty(user.getFiphone())){
+//            intent.setClass(LoginActivity.this,BindTelActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }else {
+//            intent.setClass(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+        intent.setClass(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

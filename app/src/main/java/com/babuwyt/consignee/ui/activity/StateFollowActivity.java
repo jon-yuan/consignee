@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ import com.babuwyt.consignee.util.UHelper;
 import com.babuwyt.consignee.util.request.CommonCallback.ResponseCallBack;
 import com.babuwyt.consignee.util.request.XUtil;
 import com.babuwyt.consignee.views.dialog.PromptDialog;
+import com.google.gson.Gson;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -100,8 +102,10 @@ public class StateFollowActivity extends BaseActivity {
         tv_dingdan=header.findViewById(R.id.tv_dingdan);
         tv_state=header.findViewById(R.id.tv_state);
         tv_siji=header.findViewById(R.id.tv_siji);
+        tv_fsiji=header.findViewById(R.id.tv_fsiji);
 
         tv_dianhua=header.findViewById(R.id.tv_dianhua);
+        tv_fdianhua=header.findViewById(R.id.tv_fdianhua);
 
         image_callphone=header.findViewById(R.id.image_callphone);
         layout_driver=header.findViewById(R.id.layout_driver);
@@ -128,6 +132,7 @@ public class StateFollowActivity extends BaseActivity {
             public void onSuccess(StateFollowBean result) {
                 super.onSuccess(result);
                 mDialog.dissDialog();
+                Log.d("==异常===",new Gson().toJson(result));
                 if (result.isSuccess()){
                     mList.clear();
                     mList.addAll(result.getObj().getWorktrack());
@@ -141,6 +146,7 @@ public class StateFollowActivity extends BaseActivity {
             public void onError(Throwable ex, boolean isOnCallback) {
                 super.onError(ex, isOnCallback);
                 mDialog.dissDialog();
+                Log.d("==异常===",ex+"");
                 UHelper.showToast(StateFollowActivity.this,getString(R.string.NET_ERROR));
             }
         });

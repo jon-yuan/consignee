@@ -106,7 +106,7 @@ public class MainAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent=new Intent();
                 intent.setClass(mContext, PositionActivity.class);
-                intent.putExtra("fsendcarid",mList.get(i).getFsendcarid());
+                intent.putExtra("fsendcarid",mList.get(i).getOrderId());
                 intent.putExtra("drivername",mList.get(i).getDriverName());
                 mContext.startActivity(intent);
             }

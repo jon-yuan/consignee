@@ -62,11 +62,12 @@ public class WelComeActivity extends BaseActivity {
     private void isLogin() {
         //todo 判断是否已经登陆
         if (SessionManager.getInstance().isLogin()) {
-            if (TextUtils.isEmpty(SessionManager.getInstance().getUser().getFiphone())) {
-                startActivity(new Intent(this, BindTelActivity.class));
-            } else {
-                startActivity(new Intent(this, MainActivity.class));
-            }
+//            if (TextUtils.isEmpty(SessionManager.getInstance().getUser().getFiphone())) {
+//                startActivity(new Intent(this, BindTelActivity.class));
+//            } else {
+//                startActivity(new Intent(this, MainActivity.class));
+//            }
+            startActivity(new Intent(this, MainActivity.class));
         } else {
             startActivity(new Intent(this, LoginActivity.class));
         }
